@@ -44,10 +44,14 @@ class BukuController extends Controller
 
         return redirect()->route('dashboard.buku.index')->with('success', 'Berhasil Menambahkan Kategori!');
     }
-    public function edit($slug)
+    public function show(Buku $buku)
     {
-        $buku = Buku::where('slug', $slug)->firstOrFail();
-        return view('dashboard.buku.edit',compact('Buku'));
+        return view('dashboard.buku.show', compact('buku'));
+    }
+    public function edit(Buku $buku)
+    {
+
+        return view('dashboard.buku.edit',compact('buku'));
 
     }
     public function update(BukuData $bukuData, ActionBuku $actionBuku, $slug)

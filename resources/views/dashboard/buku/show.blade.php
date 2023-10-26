@@ -1,5 +1,5 @@
 @extends('layouts.dashboard_partial.index')
-@section('title', 'Buku')
+@section('title', 'Show Buku')
 @push('css')
 <link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}" />
@@ -22,44 +22,43 @@
                 </div>
                 @endif
                 <div class="card-body">
-                    <h4 class="card-title text-center">Tambah Data Buku</h4>
+                    <h4 class="card-title text-center">Detail Data Buku {{ $buku->name }}</h4>
                     <form action="{{ route('dashboard.buku.store') }}" method="POST" enctype="multipart/form-data"
                         class="forms-sample">
                         @csrf
                         <div class="form-group">
                             <label for="name">Judul Buku</label>
-                            <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" placeholder="Judul Buku" />
+                            <input type="text" class="form-control" name="name" id="name" value="{{ $buku->name }}" placeholder="Judul Buku" />
                         </div>
                         <div class="form-group">
                             <label>Pilih Kategori</label>
                             <select class="kategori-multiple" name="categoryBukus[]" multiple="multiple" style="width: 100%;" aria-placeholder="Pilih Kategori">
-                              <option disabled>Pilih Kategori</option>
-                                @foreach ($categoryBuku as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
+                              @foreach ($buku->categoryBukus as $category)
+                              <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                              @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="name">Penerbit</label>
-                            <input type="text" class="form-control" name="penerbit" value="{{ old('penerbit') }}" id="penerbit" placeholder="Penerbit" />
+                            <input type="text" class="form-control" name="penerbit" value="{{ $buku->penerbit }}" id="penerbit" placeholder="Penerbit" />
                         </div>
                         <div class="form-group">
                             <label for="name">Tahun Terbit</label>
-                            <input type="date" class="form-control" name="tahun_terbit" id="tahun_terbit" value="{{ old('tahun_terbit') }}" placeholder="Tahun Terbit" />
+                            <input type="date" class="form-control" name="tahun_terbit" id="tahun_terbit" value="{{ $buku->tahun_terbit }}" placeholder="Tahun Terbit" />
                         </div>
                         <div class="form-group">
                             <label for="name">Penulis</label>
-                            <input type="text" class="form-control" name="penulis" id="penulis" value="{{ old('penulis') }}" placeholder="Penulis" />
+                            <input type="text" class="form-control" name="penulis" id="penulis" value="{{ $buku->penulis }}" placeholder="Penulis" />
                         </div>
                         <div class="form-group">
                             <label for="name">Seri Buku</label>
-                            <input type="text" class="form-control" name="seri_buku" id="seri_buku" value="{{ old('seri_buku') }}" placeholder="Seri Buku" />
+                            <input type="text" class="form-control" name="seri_buku" id="seri_buku" value="{{ $buku->seri_buku }}" placeholder="Seri Buku" />
                         </div>
                         <div class="form-group">
                             <label>File Buku upload</label>
                             <input type="file" name="buku" class="file-upload-default" />
                             <div class="input-group col-xs-12">
-                              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" value="{{ old('buku') }}" />
+                              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" value="{{ $buku->buku }}" />
                               <span class="input-group-append">
                                 <button class="file-upload-browse btn btn-success" type="button"> Upload </button>
                               </span>
