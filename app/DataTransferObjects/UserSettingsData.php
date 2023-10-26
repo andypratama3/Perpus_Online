@@ -2,23 +2,25 @@
 
 namespace App\DataTransferObjects;
 
-use App\Http\Requests\UserSettings\UpdateUserProfileRequest;
 use Spatie\LaravelData\Data;
+use App\Http\Requests\Dashboard\UserRequest;
 
 class UserSettingsData extends Data
 {
     public function __construct(
         public readonly string $name,
         public readonly string $email,
+        public readonly ?string $slug,
     ) {
         //
     }
 
-    public static function fromRequest(UpdateUserProfileRequest $request): self
+    public static function fromRequest(UserRequest $request): self
     {
         return self::from([
             $request->getName(),
             $request->getEmail(),
+            $request->getSlug(),
         ]);
     }
 

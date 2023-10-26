@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\CategoryBuku;
 use App\Http\Traits\UsesUuid;
 use App\Http\Traits\NameHasSlug;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,7 @@ class Buku extends Model
         'penerbit',
         'tahun_terbit',
         'penulis',
+        'seri_buku',
         'buku',
         'user_add',
         'slug',
@@ -25,8 +27,8 @@ class Buku extends Model
     protected $dates = ['deleted_at'];
 
 
-    public function category_bukus(): BelongsToMany
+    public function categoryBukus()
     {
-        return $this->belongsToMany(Buku::class, 'bukus_categorys');
+        return $this->belongsToMany(CategoryBuku::class, 'bukus_categorys');
     }
 }

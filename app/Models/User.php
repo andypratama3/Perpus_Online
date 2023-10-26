@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Role;
 use Illuminate\Support\Str;
 use App\Http\Traits\UsesUuid;
 use App\Http\Traits\NameHasSlug;
@@ -37,6 +38,7 @@ class User extends Authenticatable
         'password',
         'gauth_id',
         'gauth_type',
+        'slug',
     ];
 
     /**
@@ -68,6 +70,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-    // protected $dates = ['deleted_at'];
 
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'users_roles');
+    }
 }

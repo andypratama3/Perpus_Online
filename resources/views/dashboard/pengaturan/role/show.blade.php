@@ -5,7 +5,7 @@
 <div class="content-wrapper pb-0">
     <div class="page-header flex-wrap">
         <div class="header-left">
-            <h2>Detail Role</h2>
+            <h2>Ganti Role</h2>
         </div>
         <div class="header-right d-flex flex-wrap mt-2 mt-sm-0">
             <div class="d-flex align-items-center">
@@ -17,9 +17,13 @@
     <div class="col-lg-12 grid-margin">
         <!-- Form Basic -->
         <div class="card mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary text-center">Detail role</h6>
+            @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                <strong>{!! implode('', $errors->all('<div>:message</div>')) !!}</strong>
             </div>
+            @endif
             <div class="card-body">
                 <form action="{{ route('dashboard.pengaturan.role.update', $role->slug) }}" method="post">
                     @csrf

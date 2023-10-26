@@ -15,26 +15,26 @@
         </div>
     </div>
     <div class="row">
-    <div class="col-lg-12 grid-margin">
-        <div class="card">
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-hover text-center" id="table_user">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-              </table>
+        <div class="col-lg-12 grid-margin">
+            <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                <table class="table table-hover text-center" id="table_user">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                </table>
+                </div>
             </div>
-          </div>
+            </div>
         </div>
-      </div>
+        </div>
     </div>
-</div>
 <input type="hidden" id="user_value_data" value="{{ route('dashboard.pengaturan.getuser') }}">
 @push('js')
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>

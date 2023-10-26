@@ -29,9 +29,22 @@ class BukuRequest extends FormRequest
     public function getBuku(){
         return $this->buku;
     }
+    public function getSeriBuku(){
+        return $this->seri_buku;
+    }
+    public function getBukusCatagory(){
+        return $this->categoryBukus;
+    }
+    public function getUserAdd(){
+        return $this->user_add;
+    }
+
+
     public function getSlug(){
         return $this->slug;
     }
+
+
     public function rules(): array
     {
         return [

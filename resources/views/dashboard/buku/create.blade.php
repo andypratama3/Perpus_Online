@@ -14,18 +14,26 @@
     <div class="row">
         <div class="col-xl-12 stretch-card grid-margin">
             <div class="card">
+                @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                    <strong>{!! implode('', $errors->all('<div>:message</div>')) !!}</strong>
+                </div>
+                @endif
                 <div class="card-body">
                     <h4 class="card-title text-center">Tambah Data Buku</h4>
                     <form action="{{ route('dashboard.buku.store') }}" method="POST" enctype="multipart/form-data"
                         class="forms-sample">
                         @csrf
+                        {{-- <input type="hidden" name="user_add" value="{{ Auth::id() }}"> --}}
                         <div class="form-group">
                             <label for="name">Judul Buku</label>
                             <input type="text" class="form-control" name="name" id="name" placeholder="Judul Buku" />
                         </div>
                         <div class="form-group">
                             <label>Pilih Kategori</label>
-                            <select class="kategori-multiple" name="kategori_buku[]" multiple="multiple" style="width: 100%;" aria-placeholder="Pilih Kategori">
+                            <select class="kategori-multiple" name="categoryBukus[]" multiple="multiple" style="width: 100%;" aria-placeholder="Pilih Kategori">
                               <option disabled>Pilih Kategori</option>
                                 @foreach ($categoryBuku as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -38,7 +46,7 @@
                         </div>
                         <div class="form-group">
                             <label for="name">Tahun Terbit</label>
-                            <input type="date" class="form-control" name="tahun_tebit" id="tahun_tebit" placeholder="Tahun Terbit" />
+                            <input type="date" class="form-control" name="tahun_terbit" id="tahun_tebit" placeholder="Tahun Terbit" />
                         </div>
                         <div class="form-group">
                             <label for="name">Penulis</label>

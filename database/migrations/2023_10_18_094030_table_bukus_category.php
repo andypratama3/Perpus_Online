@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('bukus_categorys', function (Blueprint $table) {
             // Foreign Key Constraints
             $table->foreignUuid('buku_id')->references('id')->on('bukus')->onDelete('cascade');
-            $table->foreignUuid('category_id')->references('id')->on('category_bukus')->onDelete('cascade');
+            $table->foreignUuid('category_buku_id')->references('id')->on('category_bukus')->onDelete('cascade');
 
             // Setting The Primary Keys
-            $table->primary(['buku_id', 'category_id']);
+            $table->primary(['buku_id', 'category_buku_id']);
         });
     }
 

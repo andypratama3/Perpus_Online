@@ -14,8 +14,8 @@ class ActionBuku
 
 
         $upload_path = public_path('storage/img/buku/');
-        $picture_name = 'Buku'.Str::slug($BukuData->name).'_'.date('YmdHis').".$ext";
-        $file_buku->move($upload_path, $picture_name);
+        $file_name = 'Buku'.Str::slug($BukuData->name).'_'.date('YmdHis').".$ext";
+        $file_buku->move($upload_path, $file_name);
 
         //get Auth ID
         $buku = Buku::updateOrCreate(
@@ -25,14 +25,15 @@ class ActionBuku
                 'penerbit' => $BukuData->penerbit,
                 'tahun_terbit' => $BukuData->tahun_terbit,
                 'penulis' => $BukuData->penulis,
+                'seri_buku' => $BukuData->seri_buku,
                 'user_add' => Auth::id(),
-                'buku' => $picture_name,
+                'buku' => $file_name,
             ]
         );
         if (empty($BukuData->slug)) {
-            $buku_category->category_bukus()->attach($BukuData->kategori_buku);
+            $buku->categoryBukus()->attach($BukuData->categoryBukus);
         } else {
-            $buku_category->category_bukus()->sync($BukuData->kategori_buku);
+            $buku->categoryBukus()->sync($BukuData->categoryBukus);
         }
     }
 }

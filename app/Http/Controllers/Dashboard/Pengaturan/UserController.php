@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
+use App\Actions\Dashboard\User\UserAction;
 use App\Http\Requests\Dashboard\UserRequest;
 
 class UserController extends Controller

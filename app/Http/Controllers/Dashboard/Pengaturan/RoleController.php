@@ -44,7 +44,6 @@ class RoleController extends Controller
         $roleAction->execute($RoleData);
         return redirect()->route('dashboard.pengaturan.role.index')->with('success','Role Berhasil Di Tambahkan');
     }
-
     public function edit(Role $role)
     {
         $tasks = Task::orderBy('slug')->get();

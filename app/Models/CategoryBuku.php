@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Buku;
 use App\Http\Traits\UsesUuid;
 use App\Http\Traits\NameHasSlug;
 use Illuminate\Database\Eloquent\Model;
@@ -20,7 +21,7 @@ class CategoryBuku extends Model
     protected $dates = ['deleted_at'];
 
 
-    public function bukus(): BelongsToMany
+    public function bukus()
     {
         return $this->belongsToMany(Buku::class, 'bukus_categorys');
     }

@@ -24,6 +24,10 @@
                             <input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}" />
                         </div>
                         <div class="form-group">
+                            <label for="name">Email</label>
+                            <input type="text" class="form-control" name="email" id="email" value="{{ $user->email }}" />
+                        </div>
+                        <div class="form-group">
                             <label>Pilih Kategori</label>
                             <select class="role-select" name="role" style="width: 100%;" aria-placeholder="Pilih Kategori">
                                 @foreach ($user->roles as $role)
@@ -34,16 +38,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        {{-- <div class="form-group">
-                            <label>File Buku upload</label>
-                            <input type="file" name="buku" class="file-upload-default" />
-                            <div class="input-group col-xs-12">
-                              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" />
-                              <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-success" type="button"> Upload </button>
-                              </span>
-                            </div>
-                          </div> --}}
                         <div class="form-group float-right ">
                             <button type="reset" class="btn btn-secondary">Reset</button>
                             <button type="submit" class="btn btn-primary mr-2"> Submit </button>

@@ -27,6 +27,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], fu
 
     Route::group(['prefix' => 'master'], function (){
         Route::resource('buku', BukuController::class, ['names' => 'dashboard.buku']);
+        Route::get('bukus/records', [BukuController::class, 'data_table'])->name('dashboard.buku.getbuku');
+
         Route::resource('category', CategoryBukuController::class, ['names' => 'dashboard.category.buku'])->except('show');
     });
     Route::group(['prefix' => 'pengaturan'], function (){

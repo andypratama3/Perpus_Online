@@ -3,11 +3,10 @@
 namespace App\DataTransferObjects;
 
 use Spatie\LaravelData\Data;
-use App\Http\Requests\Dashboard\Category\CatagoryRequest;
+use App\Http\Requests\Dashboard\Buku\CategoryBukuRequest;
 
-// use App\Http\Requests\Category\CategoryRequest;
 
-class CategoryData extends Data
+class CategoryBukuData extends Data
 {
     public function __construct(
         public readonly string $name,
@@ -17,7 +16,7 @@ class CategoryData extends Data
         //
     }
 
-    public static function fromRequest(CatagoryRequest $request): self
+    public static function fromRequest(CategoryBukuRequest $request): self
     {
         return self::from([
             $request->getName(),
