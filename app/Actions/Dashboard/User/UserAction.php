@@ -1,6 +1,7 @@
 <?php
 namespace App\Actions\Dashboard\User;
 
+use App\Models\User;
 use App\DataTransferObjects\UserSettingsData;
 
 class UserAction {

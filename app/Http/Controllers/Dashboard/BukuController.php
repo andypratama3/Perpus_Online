@@ -22,11 +22,10 @@ class BukuController extends Controller
     }
     public function data_table(Request $request)
     {
-
-        if($this->middleware('role:admin' || 'role: admin')){
-            $query = Buku::where('user_add', Auth::id())->with('users')->select(['name', 'penerbit','tahun_terbit', 'penulis','seri_buku','user_add','buku','slug'])->orderBy('name', 'asc');
-        }else{
+        if (Auth::user() && Auth::user()->hasRole('admin')) {
             $query = Buku::select(['name', 'penerbit','tahun_terbit', 'penulis','seri_buku','user_add','buku','slug'])->orderBy('name', 'asc');
+        }else{
+            $query = Buku::where('user_add', Auth::id())->select(['name', 'penerbit','tahun_terbit', 'penulis','seri_buku','user_add','buku','slug'])->orderBy('name', 'asc');
         }
         // ->addColumn('users.name', function ($user_add) {
             //     return $user_add->users->name;
@@ -69,12 +68,12 @@ class BukuController extends Controller
     public function update(BukuData $bukuData, ActionBuku $actionBuku, $slug)
     {
         $actionBuku->execute($bukuData,$slug);
-        return redirect()->route('dashboard..buku.index')->with('success', 'Berhasil Update Kategori!');
+        return redirect()->route('dashboard.buku.index')->with('success', 'Berhasil Update Kategori!');
     }
     public function destroy(ActionDeleteBuku $actionDelete,$slug)
     {
         $actionDelete->execute($slug);
-        return redirect()->route('dashboard..buku.index')->with('success', 'Berhasil Menambahkan Kategori!');
+        return redirect()->route('dashboard.buku.index')->with('success', 'Berhasil Menambahkan Kategori!');
 
     }
 }

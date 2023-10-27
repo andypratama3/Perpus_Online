@@ -74,7 +74,7 @@ $(document).ready(function () {
             { data: 'penulis', name: 'penulis' },
             { data: 'seri_buku', name: 'seri_buku' },
             { data: 'buku', name: 'buku' },
-
+            // { data: 'users.name', name: 'users.name' },
             { data: 'user_add', name: 'user_add' },
             {
                 data: 'options', name: 'options', orderable: false, searchable: false

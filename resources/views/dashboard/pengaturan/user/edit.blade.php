@@ -12,6 +12,7 @@
     <div class="row">
         <div class="col-xl-12 stretch-card grid-margin">
             <div class="card">
+                @include('layouts.flashmessage')
                 <div class="card-body">
                     <h4 class="card-title text-center">Edit User</h4>
                     <form action="{{ route('dashboard.pengaturan.user.update', $user->slug) }}" method="POST" enctype="multipart/form-data"

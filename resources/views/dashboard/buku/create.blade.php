@@ -14,13 +14,7 @@
     <div class="row">
         <div class="col-xl-12 stretch-card grid-margin">
             <div class="card">
-                @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                    <strong>{!! implode('', $errors->all('<div>:message</div>')) !!}</strong>
-                </div>
-                @endif
+               @include('layouts.flashmessage')
                 <div class="card-body">
                     <h4 class="card-title text-center">Tambah Data Buku</h4>
                     <form action="{{ route('dashboard.buku.store') }}" method="POST" enctype="multipart/form-data"

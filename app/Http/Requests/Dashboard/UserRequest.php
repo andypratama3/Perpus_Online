@@ -22,9 +22,7 @@ class UserRequest extends FormRequest
     public function getSlug(){
         $this->slug;
     }
-    public function getRole(){
-        $this->role;
-    }
+   
     /**
      * Get the validation rules that apply to the request.
      *
@@ -33,15 +31,7 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-        ];
-    }
-    public function message()
-    {
-        return [
-            'required' => 'Attribut Tida Boleh Kosong!',
+
         ];
     }
 }
