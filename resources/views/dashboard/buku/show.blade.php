@@ -28,11 +28,11 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">Judul Buku</label>
-                            <input type="text" class="form-control" name="name" id="name" value="{{ $buku->name }}" placeholder="Judul Buku" />
+                            <input type="text" class="form-control" name="name" id="name" value="{{ $buku->name }}" placeholder="Judul Buku" readonly />
                         </div>
                         <div class="form-group">
-                            <label>Pilih Kategori</label>
-                            <select class="kategori-multiple" name="categoryBukus[]" multiple="multiple" style="width: 100%;" aria-placeholder="Pilih Kategori">
+                            <label>Kategori</label>
+                            <select class="kategori-multiple" disabled multiple="multiple" style="width: 100%;" aria-placeholder="Pilih Kategori" aria-readonly="">
                               @foreach ($buku->categoryBukus as $category)
                               <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                               @endforeach
@@ -40,27 +40,27 @@
                         </div>
                         <div class="form-group">
                             <label for="name">Penerbit</label>
-                            <input type="text" class="form-control" name="penerbit" value="{{ $buku->penerbit }}" id="penerbit" placeholder="Penerbit" />
+                            <input type="text" class="form-control" name="penerbit" value="{{ $buku->penerbit }}" id="penerbit" placeholder="Penerbit" readonly />
                         </div>
                         <div class="form-group">
                             <label for="name">Tahun Terbit</label>
-                            <input type="date" class="form-control" name="tahun_terbit" id="tahun_terbit" value="{{ $buku->tahun_terbit }}" placeholder="Tahun Terbit" />
+                            <input type="date" class="form-control" name="tahun_terbit" id="tahun_terbit" value="{{ $buku->tahun_terbit }}" placeholder="Tahun Terbit" readonly />
                         </div>
                         <div class="form-group">
                             <label for="name">Penulis</label>
-                            <input type="text" class="form-control" name="penulis" id="penulis" value="{{ $buku->penulis }}" placeholder="Penulis" />
+                            <input type="text" class="form-control" name="penulis" id="penulis" value="{{ $buku->penulis }}" placeholder="Penulis" readonly />
                         </div>
                         <div class="form-group">
                             <label for="name">Seri Buku</label>
-                            <input type="text" class="form-control" name="seri_buku" id="seri_buku" value="{{ $buku->seri_buku }}" placeholder="Seri Buku" />
+                            <input type="text" class="form-control" name="seri_buku" id="seri_buku" value="{{ $buku->seri_buku }}" placeholder="Seri Buku" readonly />
                         </div>
                         <div class="form-group">
                             <label>File Buku upload</label>
                             <input type="file" name="buku" class="file-upload-default" />
                             <div class="input-group col-xs-12">
-                              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" value="{{ $buku->buku }}" />
+                              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" value="{{ $buku->buku }}" readonly />
                               <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-success" type="button"> Upload </button>
+                                <a href="{{ asset('storage/img/buku/'. $buku->buku) }}" class="btn btn-primary">Lihat Buku</a>
                               </span>
                             </div>
                           </div>

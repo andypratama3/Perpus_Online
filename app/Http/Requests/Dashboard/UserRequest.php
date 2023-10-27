@@ -13,7 +13,18 @@ class UserRequest extends FormRequest
     {
         return true;
     }
-
+    public function getName(){
+        $this->name;
+    }
+    public function getEmail(){
+        $this->email;
+    }
+    public function getSlug(){
+        $this->slug;
+    }
+    public function getRole(){
+        $this->role;
+    }
     /**
      * Get the validation rules that apply to the request.
      *

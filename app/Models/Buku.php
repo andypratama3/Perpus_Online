@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\CategoryBuku;
 use App\Http\Traits\UsesUuid;
 use App\Http\Traits\NameHasSlug;
@@ -30,5 +31,10 @@ class Buku extends Model
     public function categoryBukus()
     {
         return $this->belongsToMany(CategoryBuku::class, 'bukus_categorys');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
     }
 }

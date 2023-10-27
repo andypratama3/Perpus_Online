@@ -6,21 +6,33 @@ use App\Models\Buku;
 use App\Models\CategoryBuku;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\DataTransferObjects\BukuData;
 use Yajra\DataTables\Facades\DataTables;
 use App\Actions\Dashboard\Buku\ActionBuku;
 
 class BukuController extends Controller
 {
+    // public function __construct(){
+    //     $this->middleware('permission: ');
+    // }
     public function index()
     {
         return view('dashboard.buku.index');
     }
     public function data_table(Request $request)
     {
-        $query = Buku::select(['name', 'penerbit','tahun_terbit', 'penulis','seri_buku','buku','slug'])->orderBy('name', 'asc');
 
+        if($this->middleware('role:admin' || 'role: admin')){
+            $query = Buku::where('user_add', Auth::id())->with('users')->select(['name', 'penerbit','tahun_terbit', 'penulis','seri_buku','user_add','buku','slug'])->orderBy('name', 'asc');
+        }else{
+            $query = Buku::select(['name', 'penerbit','tahun_terbit', 'penulis','seri_buku','user_add','buku','slug'])->orderBy('name', 'asc');
+        }
+        // ->addColumn('users.name', function ($user_add) {
+            //     return $user_add->users->name;
+            // })
         return DataTables::eloquent($query)
+
             ->addColumn('options', function ($row) {
                 return '
                     <a href="' . route('dashboard.buku.show', $row->slug) . '" class="btn btn-sm btn-warning"><i class="mdi mdi-eye"></i></a>

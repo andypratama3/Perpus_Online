@@ -37,6 +37,7 @@
                             <th>Tahun Terbit</th>
                             <th>Penulis</th>
                             <th>Seri buku</th>
+                            <th>Buku</th>
                             <th>User Add</th>
                             <th>Aksi</th>
                         </tr>
@@ -74,6 +75,7 @@ $(document).ready(function () {
             { data: 'seri_buku', name: 'seri_buku' },
             { data: 'buku', name: 'buku' },
 
+            { data: 'user_add', name: 'user_add' },
             {
                 data: 'options', name: 'options', orderable: false, searchable: false
             }
