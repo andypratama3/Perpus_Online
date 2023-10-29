@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\BukuController;
+use App\Http\Controllers\Dashboard\JurnalController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\CategoryBukuController;
 use App\Http\Controllers\Dashboard\Pengaturan\RoleController;
@@ -26,10 +27,14 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], fu
     Route::get('/', DashboardController::class)->name('dashboard.index');
 
     Route::group(['prefix' => 'master'], function (){
+        //buku
         Route::resource('buku', BukuController::class, ['names' => 'dashboard.buku']);
         Route::get('bukus/records', [BukuController::class, 'data_table'])->name('dashboard.buku.getbuku');
-
         Route::resource('category', CategoryBukuController::class, ['names' => 'dashboard.category.buku'])->except('show');
+        //jurnal
+        Route::resource('jurnal', JurnalController::class, ['names' => 'dashboard.jurnal'])->except('show');
+        Route::get('jurnal/records', [JurnalController::class, 'data_table'])->name('dashboard.jurnal.getjurnal');
+
     });
     Route::group(['prefix' => 'pengaturan'], function (){
         Route::resource('user', UserController::class, ['names' => 'dashboard.pengaturan.user'])->except('create','store');

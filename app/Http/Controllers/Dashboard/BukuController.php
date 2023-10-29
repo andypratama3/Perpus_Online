@@ -23,15 +23,15 @@ class BukuController extends Controller
     public function data_table(Request $request)
     {
         if (Auth::user() && Auth::user()->hasRole('admin')) {
-            $query = Buku::select(['name', 'penerbit','tahun_terbit', 'penulis','seri_buku','user_add','buku','slug'])->orderBy('name', 'asc');
+            $query = Buku::with('users')->select(['name', 'penerbit','tahun_terbit', 'penulis','seri_buku','user_add','buku','slug'])->orderBy('name', 'asc');
         }else{
             $query = Buku::where('user_add', Auth::id())->select(['name', 'penerbit','tahun_terbit', 'penulis','seri_buku','user_add','buku','slug'])->orderBy('name', 'asc');
         }
-        // ->addColumn('users.name', function ($user_add) {
-            //     return $user_add->users->name;
-            // })
-        return DataTables::eloquent($query)
 
+        return DataTables::eloquent($query)
+        ->addColumn('user_name', function ($row) {
+            return $row->user ? $row->user->name : 'User Not Found';
+        })
             ->addColumn('options', function ($row) {
                 return '
                     <a href="' . route('dashboard.buku.show', $row->slug) . '" class="btn btn-sm btn-warning"><i class="mdi mdi-eye"></i></a>

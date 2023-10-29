@@ -59,7 +59,7 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="mdi mdi-book menu-icon"></i>
               <span class="menu-title">Buku</span>
@@ -68,7 +68,7 @@
             <div class="submenu">
               <ul class="submenu-item">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('dashboard.category.buku.index') }}">Kategori Buku</a>
+
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('dashboard.buku.index') }}">Buku</a>
@@ -76,11 +76,23 @@
                 </li>
               </ul>
             </div>
+          </li> --}}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('dashboard.category.buku.index') }}">
+              <i class="mdi mdi-clipboard-text menu-icon"></i>
+              <span class="menu-title">Kategori</span>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
+            <a class="nav-link" href="{{ route('dashboard.buku.index') }}">
               <i class="mdi mdi-clipboard-text menu-icon"></i>
-              <span class="menu-title">Forms</span>
+              <span class="menu-title">Buku</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('dashboard.jurnal.index') }}">
+              <i class="mdi mdi-clipboard-text menu-icon"></i>
+              <span class="menu-title">Jurnal</span>
             </a>
           </li>
           <li class="nav-item">

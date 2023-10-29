@@ -38,7 +38,7 @@
                             <th>Penulis</th>
                             <th>Seri buku</th>
                             <th>Buku</th>
-                            <th>User Add</th>
+                            <th>Pengguna</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -74,8 +74,7 @@ $(document).ready(function () {
             { data: 'penulis', name: 'penulis' },
             { data: 'seri_buku', name: 'seri_buku' },
             { data: 'buku', name: 'buku' },
-            // { data: 'users.name', name: 'users.name' },
-            { data: 'user_add', name: 'user_add' },
+            { data: 'user_name', name: 'user_name' },
             {
                 data: 'options', name: 'options', orderable: false, searchable: false
             }

@@ -13,7 +13,7 @@ class ActionBuku
         $ext = $file_buku->getClientOriginalExtension();
 
 
-        $upload_path = public_path('storage/img/buku/');
+        $upload_path = public_path('storage/buku/');
         $file_name = 'Buku'.Str::slug($BukuData->name).'_'.date('YmdHis').".$ext";
         $file_buku->move($upload_path, $file_name);
 
