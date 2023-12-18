@@ -51,6 +51,11 @@
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
 <script>
 $(document).ready(function () {
+    function reloadTable(id){
+        var table = $(id).DataTable();
+        table.cleanData;
+        table.ajax.reload();
+    }
     $('#table_jurnal').DataTable({
         ordering: true,
         pagination: true,
@@ -73,40 +78,43 @@ $(document).ready(function () {
         ],
     });
     $('#table_jurnal').on('click', '#btn-delete', function () {
-        var slug = $(this).data('id');
-        var url = '{{ route("dashboard.jurnal.destroy", ":slug") }}';
-        url = url.replace(':slug', slug);
-        swal({
-            title: 'Anda yakin?',
-            text: 'Data yang sudah dihapus tidak dapat dikembalikan!',
-            icon: 'warning',
-            buttons: true,
-            dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.post(url, { slug: slug }, function (data) {
-                    if (data.status === 'success') {
-                        swal('Berhasil', data.message, 'success').then(() => {
-                        // Reload the page
-                            window.location.href = "{{ route('dashboard.jurnal.index') }}";
-                        // Reload the page with a success message
-                        });
-                     } else {
-                        // Reload the page with an error message
-                         swal('Error', data.message, 'error');
-                         window.location.href = "{{ route('dashboard.jurnal.index') }}";
-                     }
-                });
-            } else {
-                // If the user cancels the deletion, do nothing
-            }
+            var slug = $(this).data('id');
+            var url = '{{ route("dashboard.jurnal.destroy", ":slug") }}';
+            url = url.replace(':slug', slug);
+            swal({
+                title: 'Anda yakin?',
+                text: 'Data yang sudah dihapus tidak dapat dikembalikan!',
+                icon: 'warning',
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        method: 'DELETE',
+                        data: { slug: slug },
+                        url: url,
+                        success: function (data) {
+                            if (data.status === 'success') {
+                                swal('Berhasil', data.message, 'success').then(() => {
+                                reloadTable('#table_jurnal');
+                            });
+                            } else {
+                                // Reload the page with an error message
+                                swal('Error', data.message, 'error');
+                                reloadTable('#table_jurnal');
+                            }
+                        }
+                    });
+                } else {
+                    // If the user cancels the deletion, do nothing
+                }
+            });
         });
-    });
 });
 </script>
 @endpush

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('seri_buku');
             $table->string('buku');
             $table->string('user_add');
+            $table->string('cover');
             $table->string('slug');
             $table->softDeletes();
             $table->timestamps();

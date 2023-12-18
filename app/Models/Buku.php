@@ -23,6 +23,7 @@ class Buku extends Model
         'seri_buku',
         'buku',
         'user_add',
+        'cover',
         'slug',
     ];
     protected $dates = ['deleted_at'];

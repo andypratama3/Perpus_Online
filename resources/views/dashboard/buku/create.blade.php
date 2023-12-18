@@ -25,6 +25,17 @@
                             <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" placeholder="Judul Buku" />
                         </div>
                         <div class="form-group">
+                            <label>Cover</label>
+                            <input type="file" name="cover[]" class="file-upload-default" multiple />
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" multiple disabled placeholder="Upload cover" value="{{ old('cover') }}" />
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-success" type="button"> Upload </button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label>Pilih Kategori</label>
                             <select class="kategori-multiple" name="categoryBukus[]" multiple="multiple" style="width: 100%;" aria-placeholder="Pilih Kategori">
                               <option disabled>Pilih Kategori</option>

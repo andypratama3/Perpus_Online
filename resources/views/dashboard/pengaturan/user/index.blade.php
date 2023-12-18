@@ -71,42 +71,46 @@ $(document).ready(function () {
             }
         ],
     });
-    $('#dataTable').on('click', '#btn-delete', function () {
-        var slug = $(this).data('id');
-        var url = '{{ route("dashboard.input.peserta.destroy", ":slug") }}';
-        url = url.replace(':slug', slug);
-        swal({
-            title: 'Anda yakin?',
-            text: 'Data yang sudah dihapus tidak dapat dikembalikan!',
-            icon: 'warning',
-            buttons: true,
-            dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.post(url, { slug: slug }, function (data) {
-                    if (data.status === 'success') {
-                        swal('Berhasil', data.message, 'success').then(() => {
-                        // Reload the page
-                            window.location.href = "{{ route('dashboard.input.simpatisan.index') }}";
-                        // Reload the page with a success message
-                        });
-                     } else {
-                        // Reload the page with an error message
-                         swal('Error', data.message, 'error');
-                         window.location.href = "{{ route('dashboard.input.simpatisan.index') }}";
-                     }
-                });
-            } else {
-                // If the user cancels the deletion, do nothing
-            }
+    $('#table_user').on('click', '#btn-delete', function () {
+            var slug = $(this).data('id');
+            var url = '{{ route("dashboard.pengaturan.user.destroy", ":slug") }}';
+            url = url.replace(':slug', slug);
+            swal({
+                title: 'Anda yakin?',
+                text: 'Data yang sudah dihapus tidak dapat dikembalikan!',
+                icon: 'warning',
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        method: 'DELETE',
+                        data: { slug: slug },
+                        url: url,
+                        success: function (data) {
+                            if (data.status === 'success') {
+                                swal('Berhasil', data.message, 'success').then(() => {
+                                reloadTable('#table_user');
+                            });
+                            } else {
+                                // Reload the page with an error message
+                                swal('Error', data.message, 'error');
+                                reloadTable('#table_user');
+                            }
+                        }
+                    });
+                } else {
+                    // If the user cancels the deletion, do nothing
+                }
+            });
         });
+
     });
-});
 </script>
 @endpush
 @endsection

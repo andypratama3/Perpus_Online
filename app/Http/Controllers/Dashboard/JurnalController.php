@@ -65,10 +65,14 @@ class JurnalController extends Controller
         $actionJurnal->execute($jurnalData);
         return redirect()->route('dashboard.jurnal.index')->with('success','Berhasil Mengubah Jurnal');
     }
-    public function destroy(ActionDeleteJurnal $ActionDeleteJurnal,Jurnal $slug)
+    public function destroy(ActionDeleteJurnal $ActionDeleteJurnal,$slug)
     {
         $ActionDeleteJurnal->execute($slug);
-        return redirect()->route('dashboard.jurnal.index')->with('success','Berhasil Menghapus Jurnal');
+        if ($ActionDeleteJurnal) {
+            return response()->json(['status' => 'success', 'message' => 'Berhasil Menghapus Jurnal']);
+        } else {
+            return response()->json(['status' => 'failure', 'message' => 'Gagal Menghapus Jurnal']);
+        }
     }
     public function detail_buku(Jurnal $slug)
     {

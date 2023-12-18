@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\DataTransferObjects\BukuData;
 use Yajra\DataTables\Facades\DataTables;
 use App\Actions\Dashboard\Buku\ActionBuku;
+use App\Actions\Dashboard\Buku\ActionDeleteBuku;
 
 class BukuController extends Controller
 {
@@ -57,7 +58,8 @@ class BukuController extends Controller
     }
     public function show(Buku $buku)
     {
-        return view('dashboard.buku.show', compact('buku'));
+
+        return view('dashboard.buku.show', compact('buku' ));
     }
     public function edit(Buku $buku)
     {
@@ -70,14 +72,19 @@ class BukuController extends Controller
         $actionBuku->execute($bukuData,$slug);
         return redirect()->route('dashboard.buku.index')->with('success', 'Berhasil Update Kategori!');
     }
-    public function destroy(ActionDeleteBuku $actionDelete,$slug)
+    public function destroy(ActionDeleteBuku $actionDelete, $slug)
     {
         $actionDelete->execute($slug);
-        return redirect()->route('dashboard.buku.index')->with('success', 'Berhasil Menambahkan Kategori!');
+        if ($actionDelete) {
+            return response()->json(['status' => 'success', 'message' => 'Berhasil Menghapus Buku']);
+        } else {
+            return response()->json(['status' => 'failure', 'message' => 'Gagal Menghapus Buku']);
+        }
     }
+
     public function detail_buku(Buku $slug)
     {
         return view('dashboard.buku.detail_buku', compact('slug'));
-        
+
     }
 }

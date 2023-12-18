@@ -14,7 +14,7 @@
                     <h4 class="card-title text-center">Detail Data Buku {{ $slug->name }}</h4>
                     <div class="form-group">
                         <a href="{{ asset('storage/buku/'. $slug->buku) }}" target="_blank">
-                            <iframe src="{{ asset('storage/buku/'. $slug->buku . '#toolbar=0') }}" rel="noopener noreferrer nofollow"  width="100%" height="600">
+                            <iframe src="{{ asset('storage/buku/'. $slug->buku . '#toolbar=0') }}" rel="noopener noreferrer nofollow"  width="100%" height="1000">
                             {{-- This browser does not support PDFs. Please download the PDF to view it: <a href="{{ asset('folder/file_name.pdf') }}">Download PDF</a> --}}
                         </a>
                         {{-- <iframe src="{{ asset('storage/buku/'. $slug->buku . '#toolbar=0') }}" width="100%" height="600"></iframe> --}}

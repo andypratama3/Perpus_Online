@@ -10,6 +10,7 @@ use Yajra\DataTables\Facades\DataTables;
 use App\Actions\Dashboard\User\UserAction;
 use App\Http\Requests\Dashboard\UserRequest;
 use App\DataTransferObjects\UserSettingsData;
+use App\Actions\Dashboard\User\DeleteUserAction;
 
 class UserController extends Controller
 {
@@ -57,9 +58,14 @@ class UserController extends Controller
         $userAction->execute($userData, $slug);
         return redirect()->route('dashboard.pengaturan.user.index')->with('success','Berhasil Update User!');
     }
-    public function destroy(DeleteUserAction $deleteUserAction, User $user )
+    public function destroy(DeleteUserAction $deleteUserAction, $slug )
     {
-        $deleteUserAction->execute($user);
+        $deleteUserAction->execute($slug);
+        if ($deleteUserAction) {
+            return response()->json(['status' => 'success', 'message' => 'Berhasil Menghapus User']);
+        } else {
+            return response()->json(['status' => 'failure', 'message' => 'Gagal Menghapus User']);
+        }
 
     }
 
