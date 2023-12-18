@@ -82,7 +82,7 @@ $(document).ready(function () {
     });
     $('#table_buku').on('click', '#btn-delete', function () {
         var slug = $(this).data('id');
-        var url = '{{ route("dashboard.pengaturan.user.destroy", ":slug") }}';
+        var url = '{{ route("dashboard.buku.destroy", ":slug") }}';
         url = url.replace(':slug', slug);
         swal({
             title: 'Anda yakin?',
@@ -101,13 +101,13 @@ $(document).ready(function () {
                     if (data.status === 'success') {
                         swal('Berhasil', data.message, 'success').then(() => {
                         // Reload the page
-                            window.location.href = "{{ route('dashboard.pengaturan.user.index') }}";
+                            window.location.href = "{{ route('dashboard.buku.index') }}";
                         // Reload the page with a success message
                         });
                      } else {
                         // Reload the page with an error message
                          swal('Error', data.message, 'error');
-                         window.location.href = "{{ route('dashboard.pengaturan.user.index') }}";
+                         window.location.href = "{{ route('dashboard.buku.index') }}";
                      }
                 });
             } else {

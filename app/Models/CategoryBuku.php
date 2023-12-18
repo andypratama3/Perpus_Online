@@ -25,4 +25,8 @@ class CategoryBuku extends Model
     {
         return $this->belongsToMany(Buku::class, 'bukus_categorys');
     }
+    public function jurnals_category()
+    {
+        return $this->belongsToMany(Jurnal::class, 'jurnal_categorys');
+    }
 }

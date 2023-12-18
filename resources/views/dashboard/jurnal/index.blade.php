@@ -28,13 +28,12 @@
             <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                <table class="table table-hover text-center" id="table_buku">
+                <table class="table table-hover text-center" id="table_jurnal">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
                             <th>Jurnal</th>
-                            <th>Kategori</th>
                             <th>Pengguna</th>
                             <th>Aksi</th>
                         </tr>
@@ -46,72 +45,68 @@
         </div>
         </div>
     </div>
-{{-- <input type="hidden" id="buku_value_data" value="{{ route('dashboard.buku.getbuku') }}"> --}}
+<input type="hidden" id="table_value_data" value="{{ route('dashboard.jurnal.getjurnal') }}">
 @push('js')
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
 <script>
 $(document).ready(function () {
-    // $('#table_buku').DataTable({
-    //     ordering: true,
-    //     pagination: true,
-    //     deferRender: true,
-    //     serverSide: true,
-    //     responsive: true,
-    //     processing: true,
-    //     pageLength: 100,
-    //     ajax: {
-    //         'url': $('#buku_value_data').val(),
-    //     },
-    //     columns: [
-    //         { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-    //         { data: 'name', name: 'name' },
-    //         { data: 'penerbit', name: 'penerbit' },
-    //         { data: 'tahun_terbit', name: 'tahun_terbit' },
-    //         { data: 'penulis', name: 'penulis' },
-    //         { data: 'seri_buku', name: 'seri_buku' },
-    //         { data: 'buku', name: 'buku' },
-    //         { data: 'user_name', name: 'user_name' },
-    //         {
-    //             data: 'options', name: 'options', orderable: false, searchable: false
-    //         }
-    //     ],
-    // });
-    // $('#table_buku').on('click', '#btn-delete', function () {
-    //     var slug = $(this).data('id');
-    //     var url = '{{ route("dashboard.pengaturan.user.destroy", ":slug") }}';
-    //     url = url.replace(':slug', slug);
-    //     swal({
-    //         title: 'Anda yakin?',
-    //         text: 'Data yang sudah dihapus tidak dapat dikembalikan!',
-    //         icon: 'warning',
-    //         buttons: true,
-    //         dangerMode: true,
-    //     }).then((willDelete) => {
-    //         if (willDelete) {
-    //             $.ajaxSetup({
-    //                 headers: {
-    //                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //                 }
-    //             });
-    //             $.post(url, { slug: slug }, function (data) {
-    //                 if (data.status === 'success') {
-    //                     swal('Berhasil', data.message, 'success').then(() => {
-    //                     // Reload the page
-    //                         window.location.href = "{{ route('dashboard.pengaturan.user.index') }}";
-    //                     // Reload the page with a success message
-    //                     });
-    //                  } else {
-    //                     // Reload the page with an error message
-    //                      swal('Error', data.message, 'error');
-    //                      window.location.href = "{{ route('dashboard.pengaturan.user.index') }}";
-    //                  }
-    //             });
-    //         } else {
-    //             // If the user cancels the deletion, do nothing
-    //         }
-    //     });
-    // });
+    $('#table_jurnal').DataTable({
+        ordering: true,
+        pagination: true,
+        deferRender: true,
+        serverSide: true,
+        responsive: true,
+        processing: true,
+        pageLength: 100,
+        ajax: {
+            'url': $('#table_value_data').val(),
+        },
+        columns: [
+            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+            { data: 'name', name: 'name' },
+            { data: 'jurnal', name: 'jurnal' },
+            { data: 'user_name', name: 'user_name' },
+            {
+                data: 'options', name: 'options', orderable: false, searchable: false
+            }
+        ],
+    });
+    $('#table_jurnal').on('click', '#btn-delete', function () {
+        var slug = $(this).data('id');
+        var url = '{{ route("dashboard.jurnal.destroy", ":slug") }}';
+        url = url.replace(':slug', slug);
+        swal({
+            title: 'Anda yakin?',
+            text: 'Data yang sudah dihapus tidak dapat dikembalikan!',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.post(url, { slug: slug }, function (data) {
+                    if (data.status === 'success') {
+                        swal('Berhasil', data.message, 'success').then(() => {
+                        // Reload the page
+                            window.location.href = "{{ route('dashboard.jurnal.index') }}";
+                        // Reload the page with a success message
+                        });
+                     } else {
+                        // Reload the page with an error message
+                         swal('Error', data.message, 'error');
+                         window.location.href = "{{ route('dashboard.jurnal.index') }}";
+                     }
+                });
+            } else {
+                // If the user cancels the deletion, do nothing
+            }
+        });
+    });
 });
 </script>
 @endpush

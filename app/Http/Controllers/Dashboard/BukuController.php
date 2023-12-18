@@ -74,6 +74,10 @@ class BukuController extends Controller
     {
         $actionDelete->execute($slug);
         return redirect()->route('dashboard.buku.index')->with('success', 'Berhasil Menambahkan Kategori!');
-
+    }
+    public function detail_buku(Buku $slug)
+    {
+        return view('dashboard.buku.detail_buku', compact('slug'));
+        
     }
 }

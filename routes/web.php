@@ -29,11 +29,13 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], fu
     Route::group(['prefix' => 'master'], function (){
         //buku
         Route::resource('buku', BukuController::class, ['names' => 'dashboard.buku']);
+        Route::get('buku/baca/{slug}', [BukuController::class,'detail_buku'])->name('dashboard.buku.detail_buku');
         Route::get('bukus/records', [BukuController::class, 'data_table'])->name('dashboard.buku.getbuku');
         Route::resource('category', CategoryBukuController::class, ['names' => 'dashboard.category.buku'])->except('show');
         //jurnal
-        Route::resource('jurnal', JurnalController::class, ['names' => 'dashboard.jurnal'])->except('show');
-        Route::get('jurnal/records', [JurnalController::class, 'data_table'])->name('dashboard.jurnal.getjurnal');
+        Route::resource('jurnal', JurnalController::class, ['names' => 'dashboard.jurnal']);
+        Route::get('jurnals/records', [JurnalController::class, 'data_table'])->name('dashboard.jurnal.getjurnal');
+        Route::get('jurnal/baca/{slug}', [JurnalController::class,'detail_buku'])->name('dashboard.jurnal.detail_jurnal');
 
     });
     Route::group(['prefix' => 'pengaturan'], function (){

@@ -28,7 +28,8 @@
                   <img src="{{ asset('assets/images/faces/face1.jpg') }}" alt="image" />
                 </div>
                 <div class="nav-profile-text">
-                  <p class="text-black font-weight-semibold m-0">{{ Auth::user()->name }}</p>
+                    <p class="text-black font-weight-semibold m-0">{{ strtok(Auth::user()->name, ' ') }}</p>
+
                   <span class="font-13 online-color">online <i class="mdi mdi-chevron-down"></i></span>
                 </div>
               </a>

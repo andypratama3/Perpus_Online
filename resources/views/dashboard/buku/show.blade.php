@@ -60,7 +60,7 @@
                             <div class="input-group col-xs-12">
                               <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Buku" value="{{ $buku->buku }}" readonly />
                               <span class="input-group-append">
-                                <a href="{{ asset('storage/img/buku/'. $buku->buku) }}" class="btn btn-primary">Lihat Buku</a>
+                                <a href="{{ route('dashboard.buku.detail_buku', $buku->slug) }}" class="btn btn-primary">Lihat Buku</a>
                               </span>
                             </div>
                           </div>

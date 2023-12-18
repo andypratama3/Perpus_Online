@@ -16,9 +16,7 @@ class BukuData extends Data
         public readonly string $penulis,
         public readonly string $seri_buku,
         public readonly UploadedFile $buku,
-
         public readonly array $categoryBukus,
-
         public readonly ?string $slug,
 
 

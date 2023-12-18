@@ -1,5 +1,5 @@
 @extends('layouts.dashboard_partial.index')
-@section('title', 'Buku')
+@section('title', 'Jurnal')
 @push('css')
 <link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}" />
@@ -16,44 +16,28 @@
             <div class="card">
                @include('layouts.flashmessage')
                 <div class="card-body">
-                    <h4 class="card-title text-center">Tambah Data Buku</h4>
-                    <form action="{{ route('dashboard.buku.store') }}" method="POST" enctype="multipart/form-data"
+                    <h4 class="card-title text-center">Tambah Data Jurnal</h4>
+                    <form action="{{ route('dashboard.jurnal.store') }}" method="POST" enctype="multipart/form-data"
                         class="forms-sample">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Judul Buku</label>
+                            <label for="name">Judul</label>
                             <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" placeholder="Judul Buku" />
                         </div>
                         <div class="form-group">
                             <label>Pilih Kategori</label>
-                            <select class="kategori-multiple" name="categoryBukus[]" multiple="multiple" style="width: 100%;" aria-placeholder="Pilih Kategori">
+                            <select class="kategori-multiple" name="jurnals_category[]" multiple="multiple" style="width: 100%;" aria-placeholder="Pilih Kategori">
                               <option disabled>Pilih Kategori</option>
-                                @foreach ($categoryBuku as $category)
+                                @foreach ($categorys as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="name">Penerbit</label>
-                            <input type="text" class="form-control" name="penerbit" value="{{ old('penerbit') }}" id="penerbit" placeholder="Penerbit" />
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Tahun Terbit</label>
-                            <input type="date" class="form-control" name="tahun_terbit" id="tahun_terbit" value="{{ old('tahun_terbit') }}" placeholder="Tahun Terbit" />
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Penulis</label>
-                            <input type="text" class="form-control" name="penulis" id="penulis" value="{{ old('penulis') }}" placeholder="Penulis" />
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Seri Buku</label>
-                            <input type="text" class="form-control" name="seri_buku" id="seri_buku" value="{{ old('seri_buku') }}" placeholder="Seri Buku" />
-                        </div>
-                        <div class="form-group">
-                            <label>File Buku upload</label>
-                            <input type="file" name="buku" class="file-upload-default" />
+                            <label>File Jurnal upload</label>
+                            <input type="file" name="jurnal" class="file-upload-default" />
                             <div class="input-group col-xs-12">
-                              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Buku" value="{{ old('buku') }}" />
+                              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload jurnal" value="{{ old('jurnal') }}" />
                               <span class="input-group-append">
                                 <button class="file-upload-browse btn btn-success" type="button"> Upload </button>
                               </span>

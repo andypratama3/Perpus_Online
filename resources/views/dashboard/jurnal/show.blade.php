@@ -1,5 +1,5 @@
 @extends('layouts.dashboard_partial.index')
-@section('title', 'Show Buku')
+@section('title', 'Show jurnal')
 @push('css')
 <link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}" />
@@ -8,7 +8,7 @@
 <div class="content-wrapper pb-0">
     <div class="page-header flex-wrap">
         <div class="header-left">
-            <a href="{{ route('dashboard.buku.index') }}" class="btn btn-danger">Kembali</a>
+            <a href="{{ route('dashboard.jurnal.index') }}" class="btn btn-danger">Kembali</a>
         </div>
     </div>
     <div class="row">
@@ -22,45 +22,29 @@
                 </div>
                 @endif
                 <div class="card-body">
-                    <h4 class="card-title text-center">Detail Data Buku {{ $buku->name }}</h4>
-                    <form action="{{ route('dashboard.buku.store') }}" method="POST" enctype="multipart/form-data"
+                    <h4 class="card-title text-center">Detail Data Jurnal {{ $jurnal->name }}</h4>
+                    <form action="{{ route('dashboard.jurnal.store') }}" method="POST" enctype="multipart/form-data"
                         class="forms-sample">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Judul Buku</label>
-                            <input type="text" class="form-control" name="name" id="name" value="{{ $buku->name }}" placeholder="Judul Buku" readonly />
+                            <label for="name">Judul jurnal</label>
+                            <input type="text" class="form-control" name="name" id="name" value="{{ $jurnal->name }}" placeholder="Judul jurnal" readonly />
                         </div>
                         <div class="form-group">
                             <label>Kategori</label>
                             <select class="kategori-multiple" disabled multiple="multiple" style="width: 100%;" aria-placeholder="Pilih Kategori" aria-readonly="">
-                              @foreach ($buku->categoryBukus as $category)
+                              @foreach ($jurnal->jurnals_category as $category)
                               <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                               @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="name">Penerbit</label>
-                            <input type="text" class="form-control" name="penerbit" value="{{ $buku->penerbit }}" id="penerbit" placeholder="Penerbit" readonly />
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Tahun Terbit</label>
-                            <input type="date" class="form-control" name="tahun_terbit" id="tahun_terbit" value="{{ $buku->tahun_terbit }}" placeholder="Tahun Terbit" readonly />
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Penulis</label>
-                            <input type="text" class="form-control" name="penulis" id="penulis" value="{{ $buku->penulis }}" placeholder="Penulis" readonly />
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Seri Buku</label>
-                            <input type="text" class="form-control" name="seri_buku" id="seri_buku" value="{{ $buku->seri_buku }}" placeholder="Seri Buku" readonly />
-                        </div>
-                        <div class="form-group">
-                            <label>File Buku upload</label>
-                            <input type="file" name="buku" class="file-upload-default" />
+                            <label>File jurnal upload</label>
+                            <input type="file" name="jurnal" class="file-upload-default" />
                             <div class="input-group col-xs-12">
-                              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Buku" value="{{ $buku->buku }}" readonly />
+                              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload jurnal" value="{{ $jurnal->jurnal }}" readonly />
                               <span class="input-group-append">
-                                <a href="{{ asset('storage/img/buku/'. $buku->buku) }}" class="btn btn-primary">Lihat Buku</a>
+                                <a href="{{ route('dashboard.jurnal.detail_jurnal', $jurnal->slug) }}" class="btn btn-primary">Lihat Jurnal</a>
                               </span>
                             </div>
                           </div>
