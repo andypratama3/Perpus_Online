@@ -1,13 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Dashboard\BukuController;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\Dashboard\JurnalController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\CategoryBukuController;
 use App\Http\Controllers\Dashboard\Pengaturan\RoleController;
 use App\Http\Controllers\Dashboard\Pengaturan\TaskController;
 use App\Http\Controllers\Dashboard\Pengaturan\UserController;
+use App\Http\Controllers\Dashboard\BukuController as DashboardBukuController;;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,17 +22,22 @@ use App\Http\Controllers\Dashboard\Pengaturan\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::group(['prefix' => '/',], function () {
+    Route::get('/', WelcomeController::class,);
+    Route::resource('buku', BukuController::class,  ['names' => 'buku']);
 });
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], function () {
+
     Route::get('/', DashboardController::class)->name('dashboard.index');
 
     Route::group(['prefix' => 'master'], function (){
         //buku
-        Route::resource('buku', BukuController::class, ['names' => 'dashboard.buku']);
-        Route::get('buku/baca/{slug}', [BukuController::class,'detail_buku'])->name('dashboard.buku.detail_buku');
-        Route::get('bukus/records', [BukuController::class, 'data_table'])->name('dashboard.buku.getbuku');
+        Route::resource('buku', DashboardBukuController::class, ['names' => 'dashboard.buku']);
+        Route::get('buku/baca/{slug}', [DashboardBukuController::class,'detail_buku'])->name('dashboard.buku.detail_buku');
+        Route::get('bukus/records', [DashboardBukuController::class, 'data_table'])->name('dashboard.buku.getbuku');
         Route::resource('category', CategoryBukuController::class, ['names' => 'dashboard.category.buku'])->except('show');
         //jurnal
         Route::resource('jurnal', JurnalController::class, ['names' => 'dashboard.jurnal']);

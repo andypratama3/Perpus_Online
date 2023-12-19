@@ -63,7 +63,6 @@ class BukuController extends Controller
     }
     public function edit(Buku $buku)
     {
-
         return view('dashboard.buku.edit',compact('buku'));
 
     }
