@@ -17,7 +17,7 @@ class ActionBuku
             $file_name = 'Buku'.Str::slug($BukuData->name).'_'.date('YmdHis').".$ext";
             $file_buku->move($upload_path, $file_name);
         }
-              // Handle cover images
+        // Handle cover images
         if ($BukuData->cover) {
             $coverFiles = $BukuData->cover;
             $coverFileNames = [];
@@ -36,6 +36,7 @@ class ActionBuku
             ['slug' => $BukuData->slug],
             [
                 'name' => $BukuData->name,
+                'description' => $BukuData->description,
                 'penerbit' => $BukuData->penerbit,
                 'tahun_terbit' => $BukuData->tahun_terbit,
                 'penulis' => $BukuData->penulis,

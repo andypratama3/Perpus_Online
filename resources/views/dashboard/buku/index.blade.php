@@ -37,7 +37,6 @@
                                     <th>Tahun Terbit</th>
                                     <th>Penulis</th>
                                     <th>Seri buku</th>
-                                    <th>Buku</th>
                                     <th>Pengguna</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -77,7 +76,6 @@
             { data: 'tahun_terbit', name: 'tahun_terbit'},
             { data: 'penulis', name: 'penulis'},
             { data: 'seri_buku', name: 'seri_buku'},
-            { data: 'buku', name: 'buku'},
             { data: 'user_name', name: 'user_name'},
             { data: 'options', name: 'options',orderable: false, searchable: false } ],
         });

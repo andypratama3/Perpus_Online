@@ -25,10 +25,14 @@
                             <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" placeholder="Judul Buku" />
                         </div>
                         <div class="form-group">
+                            <label for="description">Deskripsi</label>
+                            <textarea name="description" id="description" cols="10" class="form-control" rows="10"></textarea>
+                        </div>
+                        <div class="form-group">
                             <label>Cover</label>
                             <input type="file" name="cover[]" class="file-upload-default" multiple />
                             <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" multiple disabled placeholder="Upload cover" value="{{ old('cover') }}" />
+                                <input type="text" class="form-control file-upload-info"  disabled placeholder="Upload cover" value="{{ old('cover') }}" />
                                 <span class="input-group-append">
                                     <button class="file-upload-browse btn btn-success" type="button"> Upload </button>
                                 </span>

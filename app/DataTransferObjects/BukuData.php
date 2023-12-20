@@ -11,6 +11,7 @@ class BukuData extends Data
 {
     public function __construct(
         public readonly string $name,
+        public readonly string $description,
         public readonly string $penerbit,
         public readonly string $tahun_terbit,
         public readonly string $penulis,
@@ -29,6 +30,7 @@ class BukuData extends Data
     {
         return self::from([
             $request->getName(),
+            $request->getDescription(),
             $request->getPenerbit(),
             $request->getTahunTerbit(),
             $request->getPenulis(),
@@ -44,6 +46,7 @@ class BukuData extends Data
     {
         return [
             'name.required' => 'Kolom Nama tidak boleh kosong!',
+            'description.required' => 'Kolom Deskripsi tidak boleh kosong!',
             'penerbit.required' => 'Kolom Penerbit tidak boleh kosong!',
             'penulis.required' => 'Kolom Penulis tidak boleh kosong!',
             'buku.required' => 'Kolom buku tidak boleh kosong!',

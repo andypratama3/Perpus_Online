@@ -33,6 +33,10 @@
                             <input type="text" class="form-control" name="name" id="name" value="{{ $buku->name }}" placeholder="Judul Buku" />
                         </div>
                         <div class="form-group">
+                            <label for="description">Deskripsi</label>
+                            <textarea name="description" id="description" cols="10" class="form-control" rows="10" readonly>{{ $buku->description }}<</textarea>
+                        </div>
+                        <div class="form-group">
                             <label>Pilih Kategori</label>
                             <select class="kategori-multiple" name="categoryBukus[]" multiple="multiple" style="width: 100%;" aria-placeholder="Pilih Kategori">
                               @foreach ($buku->categoryBukus as $category)

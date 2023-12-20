@@ -23,13 +23,16 @@
                 @endif
                 <div class="card-body">
                     <h4 class="card-title text-center">Detail Data Buku {{ $buku->name }}</h4>
-                    <form action="{{ route('dashboard.buku.store') }}" method="POST" enctype="multipart/form-data"
-                        class="forms-sample">
-                        @csrf
+                    {{-- <form action="{{ route('dashboard.buku.store') }}" method="POST" enctype="multipart/form-data"
+                        class="forms-sample"> --}}
                         <div class="form-group">
                             <label for="name">Judul Buku</label>
                             <input type="text" class="form-control" name="name" id="name" value="{{ $buku->name }}"
                                 placeholder="Judul Buku" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Deskripsi</label>
+                            <textarea name="description" id="description" cols="10" class="form-control" rows="10" readonly>{{ $buku->description }}<</textarea>
                         </div>
                         <div class="form-group">
                             <label>Cover</label>
@@ -101,7 +104,7 @@
                             <button type="reset" class="btn btn-secondary">Reset</button>
                             <button type="submit" class="btn btn-primary mr-2"> Submit </button>
                         </div> --}}
-                    </form>
+                    {{-- </form> --}}
                 </div>
             </div>
         </div>

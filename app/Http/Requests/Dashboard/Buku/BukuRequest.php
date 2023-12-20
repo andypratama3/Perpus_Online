@@ -17,6 +17,9 @@ class BukuRequest extends FormRequest
     public function getName(){
         return $this->name;
     }
+    public function getDescription(){
+        return $this->description;
+    }
     public function getPenerbit(){
         return $this->penerbit;
     }

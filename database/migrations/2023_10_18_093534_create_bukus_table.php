@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('bukus', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+            $table->longText('description')->nullable()->default('text');
             $table->string('penerbit');
             $table->string('tahun_terbit');
             $table->string('penulis');
