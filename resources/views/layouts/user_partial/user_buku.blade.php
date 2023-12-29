@@ -5,9 +5,6 @@
 
 <body>
   <!-- ======= Header ======= -->
-    @include('layouts.user_partial.header')
-  <!-- ======= Hero Section ======= -->
-
   <main id="main">
     @yield('content')
   </main><!-- End #main -->

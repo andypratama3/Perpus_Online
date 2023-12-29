@@ -84,6 +84,15 @@ class BukuController extends Controller
     public function detail_buku(Buku $slug)
     {
         return view('dashboard.buku.detail_buku', compact('slug'));
+    }
+    public function JumlahPembaca(Request $request)
+    {
 
+        if(Auth::check()){
+            $actionPembaca->execute();
+            return response()->json(['status' => 'success', 'message' => 'Berhasil Menghapus Buku']);
+        }else{
+            return redirect()->route('login')->with('failure', 'Silahkan Login');
+        }
     }
 }

@@ -13,4 +13,9 @@ class BukuController extends Controller
         // dd($query);
         return view('buku.show', compact('buku'));
     }
+    public function baca_buku(Buku $slug)
+    {
+
+        return view('buku.baca', compact('slug'));
+    }
 }

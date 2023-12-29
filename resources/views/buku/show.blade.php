@@ -1,10 +1,11 @@
-@extends('layouts.user')
+@extends('layouts.user_partial.user_buku')
 @section('title', 'Detail Buku')
 @section('content')
 
-<div class="breadcrumbs" data-aos="fade-in">
+<div class="breadcrumbs" data-aos="fade-in" style="margin: 0;">
+    <a href="{{ route('index') }}" class="btn btn-danger float-lg-start" style="margin-left: 10px;">Kembali</a>
     <div class="container">
-        <h2>Details</h2>
+        <h2>Detail Buku {{ $buku->name }}</h2>
     </div>
 </div>
 <!-- ======= Cource Details Section ======= -->
@@ -52,28 +53,41 @@
             <div class="col-lg-4">
 
                 <div class="course-info d-flex justify-content-between align-items-center">
-                    <h5>Trainer</h5>
-                    <p><a href="#">Walter White</a></p>
+                    <h5>Penerbit</h5>
+                    <p>{{ $buku->penerbit }}</p>
                 </div>
 
                 <div class="course-info d-flex justify-content-between align-items-center">
-                    <h5>Course Fee</h5>
-                    <p>$165</p>
+                    <h5>Penulis</h5>
+                    <p>{{ $buku->penulis }}</p>
                 </div>
 
                 <div class="course-info d-flex justify-content-between align-items-center">
-                    <h5>Available Seats</h5>
-                    <p>30</p>
+                    <h5>Seri</h5>
+                    <p>{{ $buku->seri_buku }}</p>
                 </div>
 
                 <div class="course-info d-flex justify-content-between align-items-center">
-                    <h5>Schedule</h5>
-                    <p>5.00 pm - 7.00 pm</p>
+                    <h5>Tahun Terbit</h5>
+                    <p>{{ $buku->tahun_terbit }}</p>
                 </div>
 
+                <div class="form-group text-center">
+                    <a href="{{ route('buku.baca', $buku->slug) }}" class="btn btn-primary">Baca Buku</a>
+                </span>
+                </div>
             </div>
         </div>
 
     </div>
-</section><!-- End Cource Details Section -->
+</section>
+<section id="cource-details-tabs" class="cource-details-tabs">
+    <div class="container" data-aos="fade-up">
+      <div class="row">
+        <div class="col-lg-12 mt-2 mt-lg-0">
+            {{-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint animi amet est. Mollitia recusandae necessitatibus sequi iste architecto ad vitae totam sapiente est accusamus ab, qui molestias. Reprehenderit, adipisci eius.</p> --}}
+        </div>
+      </div>
+    </div>
+  </section>
 @endsection

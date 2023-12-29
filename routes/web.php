@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\Dashboard\JurnalController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\CategoryBukuController;
@@ -26,8 +27,11 @@ use App\Http\Controllers\Dashboard\BukuController as DashboardBukuController;;
 //     return view('welcome');
 // });
 Route::group(['prefix' => '/',], function () {
-    Route::get('/', WelcomeController::class,);
+    Route::get('/', WelcomeController::class)->name('index');
     Route::resource('buku', BukuController::class,  ['names' => 'buku']);
+    Route::get('buku/baca/{slug}', [BukuController::class, 'baca_buku'])->name('buku.baca');
+    Route::resource('wishlist', WishlistController::class,  ['names' => 'wishlist']);
+    
 });
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], function () {
 
