@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\Dashboard\JurnalController;
@@ -11,7 +12,10 @@ use App\Http\Controllers\Dashboard\Pengaturan\RoleController;
 use App\Http\Controllers\Dashboard\Pengaturan\TaskController;
 use App\Http\Controllers\Dashboard\Pengaturan\UserController;
 use App\Http\Controllers\Dashboard\BukuController as DashboardBukuController;
+use App\Http\Controllers\Dashboard\KaryaController as DashboardKaryaController;
 use App\Http\Controllers\Dashboard\BeritaController as DashboardBeritaController;
+
+
 
 
 /*
@@ -51,6 +55,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], fu
         Route::get('jurnal/baca/{slug}', [JurnalController::class,'detail_buku'])->name('dashboard.jurnal.detail_jurnal');
         Route::resource('berita', DashboardBeritaController::class, ['names' => 'dashboard.master.berita']);
         Route::get('beritas/records', [DashboardBeritaController::class, 'data_table'])->name('dashboard.master.berita.getBerita');
+        Route::resource('karya', DashboardKaryaController::class, ['names' => 'dashboard.master.karya']);
 
     });
     Route::group(['prefix' => 'pengaturan'], function (){

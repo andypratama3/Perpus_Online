@@ -54,7 +54,7 @@ class BeritaController extends Controller
             $ext = $request->foto->getClientOriginalExtension();
 
             $upload_path = public_path('storage/img/berita/');
-            $file_name = 'Berita'.Str::slug($request->name).'_'.date('YmdHis').".$ext";
+            $file_name = 'Berita_'.Str::slug($request->name).'_'.date('YmdHis').".$ext";
             $request->foto->move($upload_path, $file_name);
         }
         $berita = new Berita();

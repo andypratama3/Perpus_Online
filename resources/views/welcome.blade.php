@@ -3,11 +3,41 @@
 @section('content')
 <section id="hero" class="d-flex justify-content-center align-items-center">
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
-      <h1>Learning Today,<br>Leading Tomorrow</h1>
-      <h2>We are team of talented designers making websites with Bootstrap</h2>
-      <a href="courses.html" class="btn-get-started">Get Started</a>
+        <h1>Learning Today,<br>Leading Tomorrow</h1>
+        <h2>We are team of talented designers making websites with Bootstrap</h2>
+        <a href="courses.html" class="btn-get-started">Get Started</a>
     </div>
-  </section><!-- End Hero -->
+</section><!-- End Hero -->
+{{-- Start Berita Section --}}
+<section id="events" class="events section">
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Berita</h2>
+        <p class="">Berita Populer</p>
+    </div><!-- End Section Title -->
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            @foreach ($beritas as $berita)
+                <div class="col-md-6 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-img">
+                            <a href="{{ asset('storage/img/berita/'. $berita->foto)  }}" target="__blank"><img src="{{ asset('storage/img/berita/'. $berita->foto)  }}" alt="..."></a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="">{{ $berita->name }}</a></h5>
+                            <p class="fst-italic text-center">{{ $berita->created_at->diffForHumans() }}</p>
+                            <p class="card-text"> {!! Str::limit($berita->body, 100) !!}</p>
+                            <div class="read-more"><a href="" class="btn-primary">Read More</a></div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+    </div>
+
+</section><!-- /Events Section -->
+
+{{-- End Berita Section --}}
 <!-- ======= About Section ======= -->
 {{-- <section id="about" class="about">
     <div class="container" data-aos="fade-up">
