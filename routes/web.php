@@ -10,7 +10,9 @@ use App\Http\Controllers\Dashboard\CategoryBukuController;
 use App\Http\Controllers\Dashboard\Pengaturan\RoleController;
 use App\Http\Controllers\Dashboard\Pengaturan\TaskController;
 use App\Http\Controllers\Dashboard\Pengaturan\UserController;
-use App\Http\Controllers\Dashboard\BukuController as DashboardBukuController;;
+use App\Http\Controllers\Dashboard\BukuController as DashboardBukuController;
+use App\Http\Controllers\Dashboard\BeritaController as DashboardBeritaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +33,7 @@ Route::group(['prefix' => '/',], function () {
     Route::resource('buku', BukuController::class,  ['names' => 'buku']);
     Route::get('buku/baca/{slug}', [BukuController::class, 'baca_buku'])->name('buku.baca');
     Route::resource('wishlist', WishlistController::class,  ['names' => 'wishlist']);
-    
+
 });
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], function () {
 
@@ -47,6 +49,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], fu
         Route::resource('jurnal', JurnalController::class, ['names' => 'dashboard.jurnal']);
         Route::get('jurnals/records', [JurnalController::class, 'data_table'])->name('dashboard.jurnal.getjurnal');
         Route::get('jurnal/baca/{slug}', [JurnalController::class,'detail_buku'])->name('dashboard.jurnal.detail_jurnal');
+        Route::resource('berita', DashboardBeritaController::class, ['names' => 'dashboard.master.berita']);
+        Route::get('beritas/records', [DashboardBeritaController::class, 'data_table'])->name('dashboard.master.berita.getBerita');
 
     });
     Route::group(['prefix' => 'pengaturan'], function (){

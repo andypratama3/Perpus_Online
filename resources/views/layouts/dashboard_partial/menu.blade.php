@@ -9,7 +9,7 @@
           <a class="navbar-brand brand-logo-mini" href="{{ route('dashboard.index') }}"><img src="{{ asset('assets/images/logo-mini.svg') }}" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-          <ul class="navbar-nav mr-lg-2">
+          {{-- <ul class="navbar-nav mr-lg-2">
             <li class="nav-item nav-search d-none d-lg-block">
               <div class="input-group">
                 <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
@@ -20,7 +20,7 @@
                 <input type="text" class="form-control" id="navbar-search-input" placeholder="Search" aria-label="search" aria-describedby="search" />
               </div>
             </li>
-          </ul>
+          </ul> --}}
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -60,6 +60,12 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('dashboard.master.berita.index') }}">
+              <i class="mdi mdi-newspaper menu-icon"></i>
+              <span class="menu-title">Berita</span>
+            </a>
+          </li>
           {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="mdi mdi-book menu-icon"></i>
@@ -96,6 +102,7 @@
               <span class="menu-title">Jurnal</span>
             </a>
           </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="mdi mdi mdi-account-outline menu-icon"></i>

@@ -4,7 +4,7 @@
             <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com
                 2020</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Develop By <a
-                    href="https://github.com/andypratama3" target="_blank">Andy Pratama</a>
+                    href="https://github.com/andypratama3" target="_blank">a>
                 </span>
         </div>
 

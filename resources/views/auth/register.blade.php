@@ -51,7 +51,6 @@
 						<span class="label-input100">Email</span>
 					</div>
 
-
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
 						<input class="input100" type="password" name="password">
 						<span class="focus-input100"></span>
@@ -62,7 +61,20 @@
 						<span class="focus-input100"></span>
 						<span class="label-input100">Konfirmasi Password</span>
 					</div>
+                    <div class="wrap-100 validate-input" style="margin-top: 20px;">
+                        <div class="form-group">
+                            <label for="" class="text-center"><strong>Login Sebagai</strong></label>
+                            <select name="role" class="form-control">
+                                @foreach ($roles as $role)
+                                    @if($role->name == 'Siswa' || $role->name == 'Guru' || $role->name == 'Mahasiswa')
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @else
+                                    @endif
+                                @endforeach
+                            </select>
 
+                        </div>
+                    </div>
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
 						<div class="contact100-form-checkbox">
 							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">

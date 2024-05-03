@@ -76,17 +76,12 @@
 
 					<div class="text-center p-t-46 p-b-20">
 						<span class="txt2">
-							or sign up using
+							or Register
 						</span>
 					</div>
 
 					<div class="login100-form-social flex-c-m">
-						<a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
-							<i class="fa fa-facebook-f" aria-hidden="true"></i>
-						</a>
-
-						<a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-							<i class="fa fa-twitter" aria-hidden="true"></i>
+						<a href="{{ route('register') }}" class="btn btn-primary"> Registrasi
 						</a>
 					</div>
 				</form>

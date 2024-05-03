@@ -29,13 +29,14 @@
                             <input type="text" class="form-control" name="email" id="email" value="{{ $user->email }}" />
                         </div>
                         <div class="form-group">
-                            <label>Pilih Kategori</label>
+                            <label>Pilih Role</label>
                             <select class="role-select" name="role" style="width: 100%;" aria-placeholder="Pilih Kategori">
+                                <option disabled>Pilih Role</option>
                                 @foreach ($user->roles as $role)
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
                                 @endforeach
                                 @foreach ($roles as $role)
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
                             </select>
                         </div>

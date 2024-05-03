@@ -32,6 +32,8 @@
             </ul>
           </li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="{{ route('login') }}">Login</a></li>
+
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
