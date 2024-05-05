@@ -1,5 +1,5 @@
 @extends('layouts.dashboard_partial.index')
-@section('title', 'Edit Buku')
+@section('title', 'Edit Jurnal')
 @push('css')
 <link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}" />
@@ -29,14 +29,15 @@
                         <div class="form-group">
                             <label>Pilih Kategori</label>
                             <select class="kategori-multiple" name="jurnals_category[]" multiple="multiple" style="width: 100%;" aria-placeholder="Pilih Kategori">
-                              @foreach ($jurnal->jurnals_category as $category)
-                              <option selected value="{{ $category->id }}" selected>{{ $category->name }}</option>
-                              @endforeach
-                              @foreach ($categorys as $category)
-                              <option value="{{ $category->id }}">{{ $category->name }}</option>
-                              @endforeach
+                                @foreach ($jurnal->jurnals_category as $category)
+                                    <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                                @endforeach
+                                @foreach ($categorys as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
+
 
                         <div class="form-group">
                             <label>File Jurnal upload</label>

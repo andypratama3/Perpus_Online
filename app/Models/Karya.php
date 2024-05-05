@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Models;
-
+use Str;
 use App\Http\Traits\UsesUuid;
-use App\Http\Traits\NameHasSlug;
+// use App\Http\Traits\NameHasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +11,7 @@ class Karya extends Model
 {
     use HasFactory;
     use UsesUuid;
-    use NameHasSlug;
+    // use NameHasSlug;
 
     protected $table = 'karyas';
 
@@ -22,4 +22,21 @@ class Karya extends Model
         'status',
         'slug',
     ];
+
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

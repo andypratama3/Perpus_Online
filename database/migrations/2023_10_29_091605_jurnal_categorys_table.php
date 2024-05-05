@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('jurnal_categorys', function (Blueprint $table) {
             // Foreign Key Constraints
             $table->foreignUuid('jurnal_id')->references('id')->on('jurnals')->onDelete('cascade');
-            $table->foreignUuid('category_jurnal_id')->references('id')->on('category_bukus')->onDelete('cascade');
+            $table->foreignUuid('category_buku_id')->references('id')->on('category_bukus')->onDelete('cascade');
 
             // Setting The Primary Keys
-            $table->primary(['jurnal_id', 'category_jurnal_id']);
+            $table->primary(['jurnal_id', 'category_buku_id']);
         });
     }
 

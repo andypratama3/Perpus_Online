@@ -8,7 +8,7 @@
     @include('layouts.user_partial.header')
   <!-- ======= Hero Section ======= -->
 
-  <main id="main">
+  <main id="main" class="main">
     @yield('content')
   </main><!-- End #main -->
 

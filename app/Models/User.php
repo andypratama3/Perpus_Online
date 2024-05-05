@@ -75,5 +75,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class, 'users_roles');
     }
-    
+
+ 
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'foreign_key', 'local_key');
+    }
 }

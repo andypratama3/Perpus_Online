@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('abstrack');
             $table->string('file_karya');
-            $table->string('status');
+            $table->string('status')->default(0);
+            $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('slug');
             $table->timestamps();
         });

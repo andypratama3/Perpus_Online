@@ -49,6 +49,15 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label>Pilih Kategori</label>
+                            <select class="kategori-multiple" name="role_id[]" multiple="multiple" style="width: 100%;" aria-placeholder="Pilih Kategori">
+                              <option disabled>Pilih Role Buku</option>
+                                @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="name">Penerbit</label>
                             <input type="text" class="form-control" name="penerbit" value="{{ old('penerbit') }}" id="penerbit" placeholder="Penerbit" />
                         </div>

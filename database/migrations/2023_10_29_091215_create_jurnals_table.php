@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('jurnal');
             $table->string('user_add');
+            $table->string('jumlah_pengunjung')->nullable();
             $table->string('slug');
             $table->softDeletes();
             $table->timestamps();

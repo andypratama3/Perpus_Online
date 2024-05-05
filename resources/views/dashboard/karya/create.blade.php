@@ -1,5 +1,5 @@
 @extends('layouts.dashboard_partial.index')
-@section('title', 'Berita')
+@section('title', 'Karya')
 @push('css')
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css" rel="stylesheet">
 @endpush
@@ -10,32 +10,31 @@
             <div class="card">
                @include('layouts.flashmessage')
                 <div class="card-body">
-                    <h4 class="card-title text-center">Tambah Berita</h4>
-                    <form action="{{ route('dashboard.master.berita.store') }}" method="post" enctype="multipart/form-data">
+                    <h4 class="card-title text-center">Tambah Karya</h4>
+                    <form action="{{ route('dashboard.master.karya.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="form-label">Judul</label>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Masukan Judul">
+                                    <input type="text" class="form-control" name="title" id="title" placeholder="Masukan Judul" value="{{ old('judul') }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Foto</label>
-                                    <input type="file" class="form-control" name="foto" id="foto" accept="image/*">
+                                    <label for="">Abstrack</label>
+                                    <input type="text" class="form-control" name="abstrack" id="abstrack" value="{{ old('abstrack') }}">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group text-center">
-                                    <label for="">Description</label>
-                                    <div id="content-editor"></div>
-                                    <textarea class="d-none" name="body" id="body-content"></textarea>
+                                    <label for="">File Karya</label>
+                                    <input type="file" class="form-control file-input" name="file_karya" value="{{ old('file_karya') }}">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <a href="{{ route('dashboard.master.berita.index') }}" class="btn btn-danger">Kembali   </a>
+                                    <a href="{{ route('dashboard.master.karya.index') }}" class="btn btn-danger">Kembali   </a>
                                     <button class="btn btn-primary float-right">Submit</button>
                                 </div>
                             </div>

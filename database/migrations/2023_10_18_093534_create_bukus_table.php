@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('buku');
             $table->string('user_add');
             $table->string('cover');
+            $table->foreignUuid('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->string('slug');
             $table->softDeletes();
             $table->timestamps();

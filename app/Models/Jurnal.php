@@ -20,6 +20,13 @@ class Jurnal extends Model
         'slug',
     ];
 
+    public function incrementClickCount()
+    {
+        $this->jumlah_pengunjung++;
+        $this->save();
+    }
+
+
     public function jurnals_category()
     {
         return $this->belongsToMany(CategoryBuku::class, 'jurnal_categorys');

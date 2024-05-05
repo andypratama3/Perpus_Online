@@ -1,5 +1,5 @@
 @extends('layouts.dashboard_partial.index')
-@section('title', 'Berita')
+@section('title', 'Karya')
 @push('css')
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css" rel="stylesheet">
 @endpush
@@ -10,37 +10,37 @@
             <div class="card">
                 @include('layouts.flashmessage')
                 <div class="card-body">
-                    <h4 class="card-title text-center">Detail Berita</h4>
+                    <h4 class="card-title text-center">Detail Karya</h4>
 
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="form-label">Judul</label>
-                                <input type="text" class="form-control" name="name" id="name"
-                                    value="{{ $berita->name }}">
+                                <label for="form-label">Title</label>
+                                <input readonly type="text" class="form-control" name="title" id="title"
+                                    value="{{ $karya->title }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Foto</label>
+                                <label for="">File</label>
                                 <div class="input-group">
-                                    <input type="text" value="{{ $berita->foto }}" class="form-control" name="foto"
-                                        id="foto">
-                                    <a href="{{ asset('storage/img/berita/'. $berita->foto) }}" target="__blank"
-                                        class="btn btn-success">Lihat Foto</a>
+                                    <input readonly type="file" value="{{ $karya->file_karya }}" class="form-control" name="file_karya"
+                                        id="file_karya">
+                                    <a href="{{ asset('storage/file/karya/'. $karya->file_karya) }}" target="__blank"
+                                        class="btn btn-success">Lihat File</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group text-center">
-                                <label for="">Description</label>
-                                <div id="content-editor">{!! $berita->body !!}</div>
-                                <textarea class="d-none" name="body" id="body-content"></textarea>
+                                <label for="">Abstract</label>
+                                <input readonly type="text" class="form-control" name="abstrack" id="abstrack"
+                                value="{{ $karya->abstrack }}">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <a href="{{ route('dashboard.master.berita.index') }}" class="btn btn-danger">Kembali
+                                <a href="{{ route('dashboard.master.karya.index') }}" class="btn btn-danger">Kembali
                                 </a>
                                 <button class="btn btn-primary float-right">Submit</button>
                             </div>

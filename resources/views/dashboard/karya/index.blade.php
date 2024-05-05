@@ -1,5 +1,5 @@
 @extends('layouts.dashboard_partial.index')
-@section('title', 'Berita')
+@section('title', 'Karya')
 @push('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 @endpush
@@ -19,14 +19,14 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover" id="table_buku">
+                        <table class="table table-hover" id="table_karya">
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Judul</th>
-                                    <th>Deskripsi</th>
-                                    <th>Create</th>
-                                    <th>Update</th>
+                                    <th>Nama Pengirim</th>
+                                    <th>Abstract</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -37,7 +37,7 @@
         </div>
     </div>
 </div>
-{{-- <input type="hidden" id="karya_data" value="{{ route('dashboard.master.karya.getBerita') }}"> --}}
+<input type="hidden" id="karya_data" value="{{ route('dashboard.master.karya.getKarya') }}">
 @push('js')
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
@@ -48,7 +48,7 @@
             table.cleanData;
             table.ajax.reload();
         }
-        $('#table_buku').DataTable({
+        $('#table_karya').DataTable({
             ordering: true,
             pagination: true,
             deferRender: true,
@@ -57,29 +57,31 @@
             processing: true,
             pageLength: 100,
             ajax: {
-                'url': $('#berita_data').val(),
+                'url': $('#karya_data').val(),
             },
             columns: [{ data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-            { data: 'name',name: 'name'},
+            { data: 'title',name: 'title'},
+            { data: 'user_name', name: 'user_name' },
+            { data: 'abstrack', name: 'abstrack'},
             {
-                data: 'body', name: 'body',
-                // render: function (data){
-                //     console.log(data);
+                data: 'status', name: 'status',
+                render: function (data){
+                    if(data == 0 ){
+                        return '<p class="btn btn-primary">Menunggu</p>';
+                    } else if (data == 1) {
+                        return '<p class="btn btn-success">Diterima</p>';
+                    } else if (data == 2) {
+                        return '<p class="btn btn-danger">Di Tolak</p>';
+                    }else{
 
-                // }
+
+                    }
+                }
             },
-            { data: 'created_at', name: 'created_at'},
-            { data: 'updated_at', name: 'updated_at'},
-            // {
-            //     data: 'foto',
-            //     render: function (data){
-            //         return '<a class="btn btn-primary" href="' . asset("storage/img/berita/{$data}") . '">Lihat Foto</a>'
-
-            //     }
-            // },
+            // { data: 'updated_at', name: 'updated_at'},
             { data: 'options', name: 'options',orderable: false, searchable: false } ],
         });
-        $('#table_buku').on('click', '#btn-delete', function () {
+        $('#table_karya').on('click', '#btn-delete', function () {
             var slug = $(this).data('id');
             var url = '{{ route("dashboard.master.berita.destroy", ":slug") }}';
             url = url.replace(':slug', slug);

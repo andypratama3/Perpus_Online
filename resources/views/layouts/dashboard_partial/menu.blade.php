@@ -123,7 +123,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('dashboard.jurnal.index') }}">
+            <a class="nav-link" href="{{ route('dashboard.master.karya.index') }}">
               <i class="mdi mdi-clipboard-text menu-icon"></i>
               <span class="menu-title">Karya</span>
             </a>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Buku;
+use App\Models\Role;
 use App\Models\CategoryBuku;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -46,8 +47,9 @@ class BukuController extends Controller
     }
     public function create()
     {
+        $roles = Role::all();
         $categoryBuku = CategoryBuku::all();
-        return view('dashboard.buku.create', compact('categoryBuku'));
+        return view('dashboard.buku.create', compact('roles','categoryBuku'));
 
     }
     public function store(BukuData $bukuData, ActionBuku $actionBuku)

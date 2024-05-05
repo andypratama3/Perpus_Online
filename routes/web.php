@@ -5,12 +5,16 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\Dashboard\JurnalController;
+use App\Http\Controllers\KaryaController;
+use App\Http\Controllers\JurnalController;
+use App\Http\Controllers\ContactController;
+
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\CategoryBukuController;
 use App\Http\Controllers\Dashboard\Pengaturan\RoleController;
 use App\Http\Controllers\Dashboard\Pengaturan\TaskController;
 use App\Http\Controllers\Dashboard\Pengaturan\UserController;
+use App\Http\Controllers\Dashboard\JurnalController as DashboardJurnalController;
 use App\Http\Controllers\Dashboard\BukuController as DashboardBukuController;
 use App\Http\Controllers\Dashboard\KaryaController as DashboardKaryaController;
 use App\Http\Controllers\Dashboard\BeritaController as DashboardBeritaController;
@@ -37,6 +41,10 @@ Route::group(['prefix' => '/',], function () {
     Route::resource('buku', BukuController::class,  ['names' => 'buku']);
     Route::get('buku/baca/{slug}', [BukuController::class, 'baca_buku'])->name('buku.baca');
     Route::resource('wishlist', WishlistController::class,  ['names' => 'wishlist']);
+    Route::resource('jurnals', JurnalController::class,  ['names' => 'jurnal']);
+    Route::get('kontak',  [ContactController::class, 'index'])->name('contact.index');
+    Route::get('karya', [KaryaController::class,'create'])->name('karya.index');
+    Route::get('karya/store', [KaryaController::class,'store'])->name('karya.store');
 
 });
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], function () {
@@ -50,12 +58,13 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], fu
         Route::get('bukus/records', [DashboardBukuController::class, 'data_table'])->name('dashboard.buku.getbuku');
         Route::resource('category', CategoryBukuController::class, ['names' => 'dashboard.category.buku'])->except('show');
         //jurnal
-        Route::resource('jurnal', JurnalController::class, ['names' => 'dashboard.jurnal']);
-        Route::get('jurnals/records', [JurnalController::class, 'data_table'])->name('dashboard.jurnal.getjurnal');
-        Route::get('jurnal/baca/{slug}', [JurnalController::class,'detail_buku'])->name('dashboard.jurnal.detail_jurnal');
+        Route::resource('jurnal', DashboardJurnalController::class, ['names' => 'dashboard.jurnal']);
+        Route::get('jurnals/records', [DashboardJurnalController::class, 'data_table'])->name('dashboard.jurnal.getjurnal');
+        Route::get('jurnal/baca/{slug}', [DashboardJurnalController::class,'detail_buku'])->name('dashboard.jurnal.detail_jurnal');
         Route::resource('berita', DashboardBeritaController::class, ['names' => 'dashboard.master.berita']);
         Route::get('beritas/records', [DashboardBeritaController::class, 'data_table'])->name('dashboard.master.berita.getBerita');
         Route::resource('karya', DashboardKaryaController::class, ['names' => 'dashboard.master.karya']);
+        Route::get('karyas/records', [DashboardKaryaController::class, 'data_table'])->name('dashboard.master.karya.getKarya');
 
     });
     Route::group(['prefix' => 'pengaturan'], function (){
