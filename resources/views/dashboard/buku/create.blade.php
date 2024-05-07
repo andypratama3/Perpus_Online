@@ -49,12 +49,16 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Pilih Kategori</label>
+                            <label>Pilih Kategori Buku</label>
                             <select class="kategori-multiple" name="role_id[]" multiple="multiple" style="width: 100%;" aria-placeholder="Pilih Kategori">
                               <option disabled>Pilih Role Buku</option>
-                                @foreach ($roles as $role)
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                              @foreach ($roles as $role)
+                                    @if($role->name == 'Siswa' || $role->name == 'Guru' || $role->name == 'Mahasiswa')
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @else
+                                    @endif
                                 @endforeach
+
                             </select>
                         </div>
                         <div class="form-group">

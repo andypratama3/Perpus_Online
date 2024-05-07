@@ -41,6 +41,9 @@ class BukuRequest extends FormRequest
     public function getUserAdd(){
         return $this->user_add;
     }
+    public function getRole(){
+        return $this->role_id;
+    }
     public function getCover(){
         return $this->cover;
     }

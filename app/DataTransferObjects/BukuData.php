@@ -16,8 +16,9 @@ class BukuData extends Data
         public readonly string $tahun_terbit,
         public readonly string $penulis,
         public readonly string $seri_buku,
-        public readonly UploadedFile $buku,
-        public readonly array $cover,
+        public readonly array $role_id,
+        public readonly ?UploadedFile $buku,
+        public readonly ?array $cover,
         public readonly array $categoryBukus,
         public readonly ?string $slug,
 
@@ -38,6 +39,7 @@ class BukuData extends Data
             $request->getSeriBuku(),
             $request->getCover(),
             $request->getBukusCatagory(),
+            $request->getRole(),
             $request->getSlug(),
         ]);
     }
@@ -49,6 +51,7 @@ class BukuData extends Data
             'description.required' => 'Kolom Deskripsi tidak boleh kosong!',
             'penerbit.required' => 'Kolom Penerbit tidak boleh kosong!',
             'penulis.required' => 'Kolom Penulis tidak boleh kosong!',
+            'role_id.required' => 'Kolom Bukut Untuk Role tidak boleh kosong!',
             'buku.required' => 'Kolom buku tidak boleh kosong!',
             'cover.required' => 'Kolom Cover Tidak Boleh Kosong',
             'cover.required' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',

@@ -8,7 +8,7 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a class="{{ Request::routeIs('index') ? 'active' : '' }}" href="{{ route('index') }}">Home</a></li>
-          <li><a href="about.html" class="{{ Request::routeIs('index') ? 'active' : '' }}">Buku</a></li>
+          <li><a href="{{ route('buku.index') }}" class="{{ Request::routeIs('buku.index') ? 'active' : '' }}">Buku</a></li>
           <li><a href="courses.html" class="{{ Request::routeIs('index') ? 'active' : '' }}">Courses</a></li>
           <li><a href="{{ route('wishlist.index') }}" class="{{ Request::routeIs('wishlist.*') ? 'active' : '' }}">Wishlist</a></li>
           <li><a href="events.html" class="{{ Request::routeIs('index') ? 'active' : '' }}">Events</a></li>
@@ -31,7 +31,7 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="{{ route('contact.index') }}">Contact</a></li>
           <li><a href="{{ route('login') }}">Login</a></li>
 
         </ul>

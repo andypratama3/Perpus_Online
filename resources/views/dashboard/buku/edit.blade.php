@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <label for="description">Deskripsi</label>
-                            <textarea name="description" id="description" cols="10" class="form-control" rows="10" readonly>{{ $buku->description }}<</textarea>
+                            <textarea name="description" id="description" cols="10" class="form-control" rows="10" readonly>{{ $buku->description }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Pilih Kategori</label>
@@ -42,6 +42,20 @@
                               @foreach ($buku->categoryBukus as $category)
                               <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                               @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Pilih Kategori Buku</label>
+                            <select class="kategori-multiple" name="role_id[]" multiple="multiple" style="width: 100%;" aria-placeholder="Pilih Kategori">
+                              <option disabled>Pilih Role Buku</option>
+                              <option value="{{ $buku->roles->id }}" selected>{{ $buku->roles->name }}</option>
+                              @foreach ($roles as $role)
+                                    @if($role->name == 'Siswa' || $role->name == 'Guru' || $role->name == 'Mahasiswa')
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @else
+                                    @endif
+                                @endforeach
+
                             </select>
                         </div>
                         <div class="form-group">
@@ -71,7 +85,7 @@
                             </div>
                           </div>
                           <div class="form-group">
-                            <iframe src="{{ asset('storage/img/buku/'. $buku->buku) }}" frameborder="0" style="width: 100%; height: 1000px;"></iframe>
+                            <iframe src="{{ asset('storage/buku/'. $buku->buku) }}" frameborder="0" style="width: 100%; height: 1000px;"></iframe>
                           </div>
                         <div class="form-group float-right ">
                             <button type="reset" class="btn btn-secondary">Reset</button>

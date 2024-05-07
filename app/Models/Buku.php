@@ -24,6 +24,7 @@ class Buku extends Model
         'seri_buku',
         'buku',
         'user_add',
+        'role_id',
         'cover',
         'slug',
     ];
@@ -38,6 +39,11 @@ class Buku extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_add');
+    }
+
+    public function roles()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
     }
 
 }

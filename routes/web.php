@@ -37,6 +37,7 @@ use App\Http\Controllers\Dashboard\BeritaController as DashboardBeritaController
 //     return view('welcome');
 // });
 Route::group(['prefix' => '/',], function () {
+
     Route::get('/', WelcomeController::class)->name('index');
     Route::resource('buku', BukuController::class,  ['names' => 'buku']);
     Route::get('buku/baca/{slug}', [BukuController::class, 'baca_buku'])->name('buku.baca');
@@ -45,6 +46,8 @@ Route::group(['prefix' => '/',], function () {
     Route::get('kontak',  [ContactController::class, 'index'])->name('contact.index');
     Route::get('karya', [KaryaController::class,'create'])->name('karya.index');
     Route::get('karya/store', [KaryaController::class,'store'])->name('karya.store');
+    Route::get('berita', [BeritaController::class, 'index'])->name('berita.index');
+    Route::get('berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');
 
 });
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], function () {

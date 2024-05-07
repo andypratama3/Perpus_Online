@@ -12,7 +12,7 @@
 <section id="events" class="events section">
     <div class="container section-title" data-aos="fade-up">
         <h2>Berita</h2>
-        <p class="">Berita Populer</p>
+        <p class="">Berita Terbaru</p>
     </div><!-- End Section Title -->
     <div class="container" data-aos="fade-up">
         <div class="row">
@@ -26,7 +26,7 @@
                             <h5 class="card-title"><a href="">{{ $berita->name }}</a></h5>
                             <p class="fst-italic text-center">{{ $berita->created_at->diffForHumans() }}</p>
                             <p class="card-text"> {!! Str::limit($berita->body, 100) !!}</p>
-                            <div class="read-more"><a href="" class="btn-primary">Read More</a></div>
+                            <div class="read-more"><a href="{{ route('berita.show', $berita->slug) }}" class="btn btn-primary text-white">Read More</a></div>
                         </div>
                     </div>
                 </div>
