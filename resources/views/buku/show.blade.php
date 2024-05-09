@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="breadcrumbs" data-aos="fade-in" style="margin: 0;">
-    <a href="{{ route('index') }}" class="btn btn-danger float-lg-start" style="margin-left: 10px;">Kembali</a>
+    <a href="{{ route('buku.index') }}" class="btn btn-danger float-lg-start" style="margin-left: 10px;">Kembali</a>
     <div class="container">
         <h2>Detail Buku {{ $buku->name }}</h2>
     </div>

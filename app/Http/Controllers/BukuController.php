@@ -42,7 +42,14 @@ class BukuController extends Controller
     }
     public function baca_buku(Buku $slug)
     {
+        // if(Auth::check()){
+        //     return redirect()->route('login')->with('failed','Login Terlebih Dahulu');
 
-        return view('buku.baca', compact('slug'));
+        // }else{
+        //     return view('buku.baca', compact('buku'));
+
+        // }
+            return view('buku.baca', compact('slug'));
+
     }
 }

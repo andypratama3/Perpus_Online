@@ -15,9 +15,10 @@ use App\Actions\Dashboard\Buku\ActionDeleteBuku;
 
 class BukuController extends Controller
 {
-    // public function __construct(){
-    //     $this->middleware('permission: ');
-    // }
+    public function __construct(){
+        $this->middleware('role:superadmin');
+        // $this->middleware('permission : ');
+    }
     public function index()
     {
         return view('dashboard.buku.index');

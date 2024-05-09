@@ -34,7 +34,7 @@
                     <p class="mbr-text align-center pb-3 mbr-fonts-style display-7">
                         {!! Str::limit($buku->description, 100) !!}</p>
                     <h5 class="link align-center mbr-fonts-style display-7"><a
-                            href="{{ route('buku.baca', $buku->slug) }}" class="text-black btn btn-success btn-sm">
+                            href="{{ route('buku.show', $buku->slug) }}" class="text-black btn btn-success btn-sm">
                             READ MORE</a></h5>
                 </div>
             </div>
