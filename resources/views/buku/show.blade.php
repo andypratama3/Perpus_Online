@@ -73,7 +73,11 @@
                 </div>
 
                 <div class="form-group text-center">
-                    <a href="{{ route('buku.baca', $buku->slug) }}" class="btn btn-primary">Baca Buku</a>
+                    @auth
+                        <a href="{{ route('buku.baca', $buku->slug) }}" class="btn btn-primary">Baca Buku</a>
+                        @else
+                        <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+                    @endauth
                 </span>
                 </div>
             </div>

@@ -13,7 +13,12 @@
             <h3 class="mbr-section-subtitle mbr-semibold align-center mbr-light mbr-fonts-style display-5">
                 BUKU
             </h3>
-
+            <div class="container">
+                <ul>
+                    <li>a</li>
+                    <li>A</li>
+                </ul>
+            </div>
         </div>
 
         <div class="row">
@@ -33,9 +38,11 @@
                     <h4 class="card-title align-center pb-1 mbr-bold mbr-fonts-style display-5">{{ $buku->name }}</h4>
                     <p class="mbr-text align-center pb-3 mbr-fonts-style display-7">
                         {!! Str::limit($buku->description, 100) !!}</p>
-                    <h5 class="link align-center mbr-fonts-style display-7"><a
-                            href="{{ route('buku.show', $buku->slug) }}" class="text-black btn btn-success btn-sm">
-                            READ MORE</a></h5>
+                    <h5 class="link align-center mbr-fonts-style display-7">
+                        <a href="{{ route('buku.show', $buku->slug) }}" class="text-black btn btn-success btn-sm">
+                            READ MORE
+                        </a>
+                    </h5>
                 </div>
             </div>
             @endforeach
