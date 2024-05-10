@@ -1,18 +1,19 @@
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">BPMP KALTIM</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        <a href="{{ route('index') }}" class="logo me-auto"><img src="{{ asset('assets_user/img/logo1.jpeg') }}" alt="" class="img-fluid"></a>
+        <h1 class="logo me-auto"><a href="{{ route('index') }}">PERPUSTAKAAN BPMP KALTIM</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
 
       <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a class="{{ Request::routeIs('index') ? 'active' : '' }}" href="{{ route('index') }}">Home</a></li>
-          <li><a href="{{ route('buku.index') }}" class="{{ Request::routeIs('buku.index') ? 'active' : '' }}">Buku</a></li>
-          <li><a href="courses.html" class="{{ Request::routeIs('index') ? 'active' : '' }}">Courses</a></li>
-          <li><a href="{{ route('wishlist.index') }}" class="{{ Request::routeIs('wishlist.*') ? 'active' : '' }}">Wishlist</a></li>
-          <li><a href="events.html" class="{{ Request::routeIs('index') ? 'active' : '' }}">Events</a></li>
-          <li><a href="pricing.html" class="{{ Request::routeIs('index') ? 'active' : '' }}">Pricing</a></li>
+          <ul>
+              <li><a class="{{ Request::routeIs('index') ? 'active' : '' }}" href="{{ route('index') }}">Home</a></li>
+              <li><a href="{{ route('buku.index') }}" class="{{ Request::routeIs('buku.index') ? 'active' : '' }}">Buku</a></li>
+                <li><a href="courses.html" class="{{ Request::routeIs('index') ? 'active' : '' }}">Courses</a></li>
+                <li><a href="{{ route('wishlist.index') }}"
+                        class="{{ Request::routeIs('wishlist.*') ? 'active' : '' }}">Wishlist</a></li>
+                <li><a href="events.html" class="{{ Request::routeIs('index') ? 'active' : '' }}">Events</a></li>
+                <li><a href="pricing.html" class="{{ Request::routeIs('index') ? 'active' : '' }}">Pricing</a></li>
 
           {{-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>

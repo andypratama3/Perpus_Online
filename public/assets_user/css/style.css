@@ -135,6 +135,8 @@ h6 {
 
 #header .logo img {
   max-height: 40px;
+  width: 350px;
+  height: 250px;
 }
 
 /**
@@ -150,6 +152,7 @@ h6 {
   transition: 0.3s;
   font-size: 14px;
   display: inline-block;
+
 }
 
 .get-started-btn:hover {
@@ -396,9 +399,10 @@ h6 {
 #hero {
   width: 100%;
   height: 80vh;
-  background: url("../img/hero-bg.jpg") top center;
-  background-size: cover;
+  background: url("../img/hero.jpg") top center;
+  background-size: contain;
   position: relative;
+
 }
 
 #hero:before {
@@ -409,6 +413,7 @@ h6 {
   top: 0;
   left: 0;
   right: 0;
+
 }
 
 #hero .container {

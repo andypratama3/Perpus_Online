@@ -31,13 +31,16 @@ class ActionBuku
                 $file_name_cover = 'Cover' . Str::slug($BukuData->name) . '_' . date('YmdHis') . ".$ext";
                 $coverFile->move($upload_path, $file_name_cover);
                 $coverFileNames[] = $file_name_cover;
+
             }
+            $implodedCoverFileNames = implode(',', $coverFileNames); // Concatenate file names into a string
+
         }else{
             $coverFileNames[] = $old_buku->cover;
         }
 
         $role_id = implode(',' , $BukuData->role_id);
-        
+
         //get Auth ID
         $buku = Buku::updateOrCreate(
             ['slug' => $BukuData->slug],
@@ -48,7 +51,7 @@ class ActionBuku
                 'tahun_terbit' => $BukuData->tahun_terbit,
                 'penulis' => $BukuData->penulis,
                 'seri_buku' => $BukuData->seri_buku,
-                'cover' => implode(',', $coverFileNames),
+                'cover' => $implodedCoverFileNames,
                 'role_id' => $role_id,
                 'user_add' => Auth::id(),
                 'buku' => $file_name,
