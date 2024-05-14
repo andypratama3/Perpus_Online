@@ -23,14 +23,17 @@ class KaryaController extends Controller
     public function data_table()
     {
         if (Auth::user() && Auth::user()->hasRole('superadmin')) {
-            $query = Karya::with('user')->select(['title','abstrack','user_id','status','slug',])->orderBy('title', 'asc');
+            $query = Karya::with('user')->select(['title','abstrack','user_id','status','slug','role_id'])->orderBy('title', 'asc');
         }else{
-            $query = Karya::with('user')->where('user_id', Auth::id())->select(['title','abstrack','user_id','status','slug',])->orderBy('title', 'asc');
+            $query = Karya::with('user','roles')->where('user_id', Auth::id())->select(['title','abstrack','user_id','status','slug','role_id'])->orderBy('title', 'asc');
         }
 
         return DataTables::eloquent($query)
         ->addColumn('user_name', function ($row) {
             return $row->user ? $row->user->name : 'User Not Found';
+        })
+        ->addColumn('role_name', function ($row) {
+            return $row->roles ? $row->roles->name : 'User Not Found';
         })
             ->addColumn('options', function ($row) {
                 return '
@@ -73,9 +76,9 @@ class KaryaController extends Controller
         $karya->file_karya = $file_name;
         $karya->user_id = $user_id->id;
 
-        // foreach ($user_id->roles as $role) {
-        //     $karya->role_id = $role->id;
-        // }
+        foreach ($user_id->roles as $role) {
+            $karya->role_id = $role->id;
+        }
         $karya->save();
 
         return redirect()->route('dashboard.master.karya.index')->with('success','Berhasil Menambah Karya');
@@ -106,7 +109,6 @@ class KaryaController extends Controller
     public function update(Request $request, $slug)
     {
         $karya = Karya::where('slug', $slug)->firstOrFail();
-
         if($request->file_karya){
             $ext = $request->file_karya->getClientOriginalExtension();
 
@@ -120,6 +122,7 @@ class KaryaController extends Controller
         $karya->abstrack = $request->abstrack;
         $karya->file_karya = $file_name;
         $karya->user_id = $karya->user_id;
+
 
         $status = intval($request->status);
         if($status == 1){
@@ -137,8 +140,15 @@ class KaryaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Karya $karya)
     {
-        //
+        $action = $karya->delete();
+
+        if($action){
+            return response()->json(['status' => 'success', 'message' => 'Berhasil Menghapus Karya']);
+        }else{
+            return response()->json(['status' => 'failure', 'message' => 'Gagal Menghapus Karya']);
+        }
+
     }
 }

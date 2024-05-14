@@ -10,7 +10,7 @@
               <li><a class="{{ Request::routeIs('index') ? 'active' : '' }}" href="{{ route('index') }}">Home</a></li>
               <li><a href="{{ route('buku.index') }}" class="{{ Request::routeIs('buku.index') ? 'active' : '' }}">Buku</a></li>
                 <li><a href="courses.html" class="{{ Request::routeIs('index') ? 'active' : '' }}">Jurnal</a></li>
-                <li><a href="{{ route('wishlist.index') }}" class="{{ Request::routeIs('wishlist.*') ? 'active' : '' }}">Karya </a></li>
+                <li><a href="{{ route('karya.index') }}" class="{{ Request::routeIs('karya.*') ? 'active' : '' }}">Karya </a></li>
 
           {{-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>

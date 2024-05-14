@@ -6,3 +6,6 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('assets_user/js/main.js')}}"></script>
+
+
+  @stack('js_user')

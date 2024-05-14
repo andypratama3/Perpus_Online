@@ -20,6 +20,8 @@ class Karya extends Model
         'abstrack',
         'file_karya',
         'status',
+        'role_id',
+        'cover_karya',
         'slug',
     ];
 
@@ -37,6 +39,11 @@ class Karya extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function roles()
+    {
+        return $this->BelongsTo(Role::class, 'role_id', 'id');
     }
 
 }

@@ -26,12 +26,13 @@
                                     <input type="text" class="form-control" name="abstrack" id="abstrack" value="{{ old('abstrack') }}">
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group text-center">
                                     <label for="">File Karya</label>
-                                    <input type="file" class="form-control file-input" name="file_karya" value="{{ old('file_karya') }}">
+                                    <input type="file" class="form-control file-input" name="file_karya" accept="application/pdf" value="{{ old('file_karya') }}">
                                 </div>
                             </div>
+
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <a href="{{ route('dashboard.master.karya.index') }}" class="btn btn-danger">Kembali   </a>

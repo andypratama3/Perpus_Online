@@ -25,6 +25,7 @@
                                     <th>No</th>
                                     <th>Judul</th>
                                     <th>Nama Pengirim</th>
+                                    <th>Role</th>
                                     <th>Abstract</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
@@ -62,6 +63,8 @@
             columns: [{ data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
             { data: 'title',name: 'title'},
             { data: 'user_name', name: 'user_name' },
+            { data: 'role_name', name: 'role_name' },
+
             { data: 'abstrack', name: 'abstrack'},
             {
                 data: 'status', name: 'status',
@@ -83,7 +86,7 @@
         });
         $('#table_karya').on('click', '#btn-delete', function () {
             var slug = $(this).data('id');
-            var url = '{{ route("dashboard.master.berita.destroy", ":slug") }}';
+            var url = '{{ route("dashboard.master.karya.destroy", ":slug") }}';
             url = url.replace(':slug', slug);
             swal({
                 title: 'Anda yakin?',
@@ -105,12 +108,12 @@
                         success: function (data) {
                             if (data.status === 'success') {
                                 swal('Berhasil', data.message, 'success').then(() => {
-                                reloadTable('#table_buku');
+                                reloadTable('#table_karya');
                             });
                             } else {
                                 // Reload the page with an error message
                                 swal('Error', data.message, 'error');
-                                reloadTable('#table_buku');
+                                reloadTable('#table_karya');
                             }
                         }
                     });

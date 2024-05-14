@@ -44,7 +44,7 @@ Route::group(['prefix' => '/',], function () {
     Route::resource('wishlist', WishlistController::class,  ['names' => 'wishlist']);
     Route::resource('jurnals', JurnalController::class,  ['names' => 'jurnal']);
     Route::get('kontak',  [ContactController::class, 'index'])->name('contact.index');
-    Route::get('karya', [KaryaController::class,'create'])->name('karya.index');
+    Route::get('karya', [KaryaController::class,'index'])->name('karya.index');
     Route::get('karya/store', [KaryaController::class,'store'])->name('karya.store');
     Route::get('berita', [BeritaController::class, 'index'])->name('berita.index');
     Route::get('berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');

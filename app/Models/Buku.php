@@ -25,10 +25,17 @@ class Buku extends Model
         'buku',
         'user_add',
         'role_id',
+        'jumlah_pengunjung',
         'cover',
         'slug',
     ];
     protected $dates = ['deleted_at'];
+
+    public function incrementClickCount()
+    {
+        $this->jumlah_pengunjung++;
+        $this->save();
+    }
 
 
     public function categoryBukus()

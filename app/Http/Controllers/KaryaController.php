@@ -3,9 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Karya;
+use App\Models\Role;
 
 class KaryaController extends Controller
 {
+
+    public function index()
+    {
+        $karyas = Karya::where('status', 1)->paginate(10);
+        $roles = Role::all();
+        return view('karya.index', compact('karyas','roles'));
+    }
     public function create(Request $request)
     {
         return view('karya.create');
