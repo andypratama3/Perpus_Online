@@ -14,6 +14,7 @@
                 <div class="col-md-3 d-flex align-items-stretch">
                     <div class="card">
                         <div class="card-img">
+
                             <a href="{{ asset('storage/img/berita/'. $berita->foto)  }}" target="__blank"><img src="{{ asset('storage/img/berita/'. $berita->foto)  }}" alt="..."></a>
                         </div>
                         <div class="card-body">

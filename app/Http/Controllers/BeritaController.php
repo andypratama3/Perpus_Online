@@ -12,7 +12,7 @@ class BeritaController extends Controller
      */
     public function index()
     {
-        
+
         $beritas = Berita::orderBy('created_at', 'desc')->get();
         return view('berita.index', compact('beritas'));
     }
