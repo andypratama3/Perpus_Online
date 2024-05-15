@@ -12,7 +12,8 @@ class Jurnal extends Model
     use HasFactory;
     use UsesUuid;
     use NameHasSlug;
-    protected $tables = 'jurnals';
+    protected $table = 'jurnals';
+
     protected $fillable = [
         'name',
         'jurnal',

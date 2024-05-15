@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jurnal;
+use App\Models\CategoryBuku;
+
+
 class JurnalController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $jurnals = Jurnal::orderBy('created_at', 'desc')->paginate(10);
+        $jurnals = Jurnal::orderBy('created_at', 'desc')->paginate(20);
+        $categorys = CategoryBuku::all();
 
-        return view('jurnal.index', compact('jurnals'));
+        if($request->search){
+            
+        }
+        return view('jurnal.index', compact('jurnals','categorys'));
     }
 
     public function show(Jurnal $jurnal)

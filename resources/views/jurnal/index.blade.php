@@ -1,6 +1,7 @@
 @extends('layouts.user')
 @section('title', 'Jurnal')
 @push('css_user')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <style>
     .jurnal_section {
         margin-top: 50px;
@@ -54,6 +55,7 @@
     .jurnal-form .custom-select:focus {
         -webkit-box-shadow: none;
         box-shadow: none;
+        background-color: #5a85dd
     }
 
     .jurnal-form .select-container {
@@ -66,7 +68,6 @@
         top: calc(50% - 14px);
         font-size: 18px;
         color: #ffffff;
-        content: '\F2F9';
         font-family: "Material-Design-Iconic-Font";
     }
 
@@ -181,6 +182,7 @@
     .mb-30 {
         margin-bottom: 30px;
     }
+
 </style>
 @endpush
 @section('content')
@@ -193,9 +195,19 @@
 
                     <form action="#" class="jurnal-form mb-60">
                         <div class="row">
-                            <div class="col-md-6 col-lg-10 my-3">
+                            <div class="col-md-6 col-lg-6 my-3">
                                 <div class="input-group position-relative">
-                                    <input type="text" class="form-control" placeholder="Cari Jurnal ..." id="keywords">
+                                    <input type="text" class="form-control" id="search-jurnal" placeholder="Cari Jurnal ..." id="keywords">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 my-3">
+                                <div class="input-group position-relative">
+                                    <select name="" id="select-category" class="form-control select-container custom-select" aria-placeholder="Pilih Kategori">
+                                        <option selected disabled>Pilih Kategori</option>
+                                        @foreach ($categorys as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-2 col-lg-2 my-3 float-end">
@@ -227,7 +239,7 @@
                                     </div>
                                 </div>
                                 <div class="job-right my-4 flex-shrink-0">
-                                    <a href="{{ route('jurnal.show', $jurnal->slug)  }}" class="btn d-block w-100 d-sm-inline-block btn-light">Lihat Jurnal <i class="bi bi-eye"></i></a>
+                                    <a href="{{ route('jurnal.show', $jurnal->slug)  }}" class="btn d-block w-100 d-sm-inline-block btn-success">Lihat Jurnal <i class="bi bi-eye"></i></a>
                                 </div>
                             </div>
                         @endforeach
@@ -236,13 +248,8 @@
 
                 <!-- START Pagination -->
                 <nav aria-label="Page navigation">
-                    <ul class="pagination pagination-reset justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                                <i class="zmdi zmdi-long-arrow-left"></i>
-                            </a>
-                        </li>
-
+                    <ul class="pagination pagination-reset justify-content-end">
+                        {{ $jurnals->links() }}
                     </ul>
                 </nav> -
                 <!-- END Pagination -->
@@ -251,5 +258,12 @@
 
     </div>
 </section>
+@push('js_user')
 
+    <script>
+        $(document).ready(function () {
+
+        });
+    </script>
+@endpush
 @endsection
