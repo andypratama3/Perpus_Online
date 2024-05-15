@@ -48,7 +48,7 @@ Route::group(['prefix' => '/',], function () {
     Route::get('karya/store', [KaryaController::class,'store'])->name('karya.store');
     Route::get('berita', [BeritaController::class, 'index'])->name('berita.index');
     Route::get('berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');
-
+    
 });
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], function () {
 

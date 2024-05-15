@@ -1,59 +1,255 @@
 @extends('layouts.user')
 @section('title', 'Jurnal')
+@push('css_user')
+<style>
+    .jurnal_section {
+        margin-top: 50px;
+    }
+
+    .jurnal-form {
+        background-color: #4e63d7;
+        border-radius: 5px;
+        padding: 0 16px;
+    }
+
+    .jurnal-form .form-control {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 0;
+        padding: 12px 15px;
+        color: #fff;
+    }
+
+    .jurnal-form .form-control::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: #fff;
+    }
+
+    .jurnal-form .form-control::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #fff;
+    }
+
+    .jurnal-form .form-control:-ms-input-placeholder {
+        /* IE 10+ */
+        color: #fff;
+    }
+
+    .jurnal-form .form-control:-moz-placeholder {
+        /* Firefox 18- */
+        color: #fff;
+    }
+
+    .jurnal-form .custom-select {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 0;
+        padding: 12px 15px;
+        color: #fff;
+        width: 100%;
+        border-radius: 5px;
+        text-align: left;
+        height: auto;
+        background-image: none;
+    }
+
+    .jurnal-form .custom-select:focus {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .jurnal-form .select-container {
+        position: relative;
+    }
+
+    .jurnal-form .select-container:before {
+        position: absolute;
+        right: 15px;
+        top: calc(50% - 14px);
+        font-size: 18px;
+        color: #ffffff;
+        content: '\F2F9';
+        font-family: "Material-Design-Iconic-Font";
+    }
+
+    .filter-result .jurnal-item {
+        background: #fff;
+        -webkit-box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
+        box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
+        border-radius: 10px;
+        padding: 10px 35px;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .list-disk li {
+        list-style: none;
+        margin-bottom: 12px;
+    }
+
+    .list-disk li:last-child {
+        margin-bottom: 0;
+    }
+
+    .jurnal-item .img-holder {
+        height: 65px;
+        width: 65px;
+        background-color: #4e63d7;
+        background-image: -webkit-gradient(linear, left top, right top, from(rgba(78, 99, 215, 0.9)), to(#5a85dd));
+        background-image: linear-gradient(to right, rgba(78, 99, 215, 0.9) 0%, #5a85dd 100%);
+        font-family: "Open Sans", sans-serif;
+        color: #fff;
+        font-size: 22px;
+        font-weight: 700;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border-radius: 65px;
+    }
+
+    .jurnal-title {
+        background-color: #4e63d7;
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+        border-radius: 10px 10px 0 0;
+        background-image: -webkit-gradient(linear, left top, right top, from(rgba(78, 99, 215, 0.9)), to(#5a85dd));
+        background-image: linear-gradient(to right, rgba(78, 99, 215, 0.9) 0%, #5a85dd 100%);
+    }
+
+    .jurnal-overview {
+        -webkit-box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
+        box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
+        border-radius: 10px;
+    }
+
+    @media (min-width: 992px) {
+        .jurnal-overview {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 70px;
+        }
+    }
+
+    .jurnal-overview .job-detail ul {
+        margin-bottom: 28px;
+    }
+
+    .jurnal-overview .job-detail ul li {
+        opacity: 0.75;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .jurnal-overview .job-detail ul li i {
+        font-size: 20px;
+        position: relative;
+        top: 1px;
+    }
+
+    .jurnal-overview .overview-bottom,
+    .jurnal-overview .overview-top {
+        padding: 35px;
+    }
+
+    .job-content ul li {
+        font-weight: 600;
+        opacity: 0.75;
+        border-bottom: 1px solid #ccc;
+        padding: 10px 5px;
+    }
+
+    @media (min-width: 768px) {
+        .job-content ul li {
+            border-bottom: 0;
+            padding: 0;
+        }
+    }
+
+    .job-content ul li i {
+        font-size: 20px;
+        position: relative;
+        top: 1px;
+    }
+
+    .mb-30 {
+        margin-bottom: 30px;
+    }
+</style>
+@endpush
 @section('content')
-<!-- Page Title -->
-<div class="page-title mx-5" style="margin-top: 40px; border-radius: 20px;" data-aos="fade">
-    <nav class="breadcrumbs">
-        <div class="container">
-           <h2>Jurnal</h2>
-        </div>
-    </nav>
-</div><!-- End Page Title -->
-
-<!-- Courses Section -->
-<section id="courses" class="courses section">
-
+<section class="jurnal_section">
     <div class="container">
-        <div class="col-md-12 mb-4">
-            <div class="form-group">
 
-                <div class="input-group">
-                    <input type="text" class="form-control mt-2">
-                    <button type="button" class="btn btn-primary">Search</button>
-                </div>
-            </div>
-        </div>
         <div class="row">
-            @foreach ($jurnals as $jurnal)
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                <div class="course-item">
-                    {{-- <img src="{{ asset('storage/jurnal/'. $jurnal->jurnal . '#toolbar=0') }}" class="img-fluid" alt="..."> --}}
-                    <div class="course-content">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            @foreach ($jurnal->jurnals_category as $category)
-                                <p class="category">{{ $category->name }}</p>
-                            @endforeach
-                        </div>
+            <div class="col-lg-10 mx-auto">
+                <div class="jurnal-search mb-60">
 
-                        <h3><a href="{{ route('jurnal.show', $jurnal->slug) }}">{{ $jurnal->name }}</a></h3>
-                        <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere
-                            quia quae dolores dolorem tempore.</p>
-                        <div class="trainer d-flex justify-content-between align-items-center">
-                            <div class="trainer-profile d-flex align-items-center">
-                                <img src="assets/img/trainers/trainer-1-2.jpg" class="img-fluid" alt="">
-                                <a href="#" class="trainer-link">{{ $jurnal->user->name }}</a>
+                    <form action="#" class="jurnal-form mb-60">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-10 my-3">
+                                <div class="input-group position-relative">
+                                    <input type="text" class="form-control" placeholder="Cari Jurnal ..." id="keywords">
+                                </div>
                             </div>
-                            <div class="trainer-rank d-flex align-items-center">
-                                <i class="bi bi-person user-icon"></i>&nbsp;50
-                                &nbsp;&nbsp;
-                                <i class="bi bi-heart heart-icon"></i>&nbsp;65
+                            <div class="col-md-2 col-lg-2 my-3 float-end">
+                                <button type="button" class="btn btn-lg btn-block btn-danger btn-custom"
+                                    id="contact-submit">
+                                    Search <i class="bi bi-search icon my-5"></i>
+                                </button>
                             </div>
                         </div>
+                    </form>
+
+                    <div class="filter-result">
+                        <p class="mb-30 ff-montserrat">Total Jurnal : {{ $jurnals->total() }} Item</p>
+                        @foreach ($jurnals as $jurnal)
+                            <div class="jurnal-item d-md-flex align-items-center justify-content-between mb-30">
+                                <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
+                                    <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
+                                        <i class="bi bi-book"></i>
+                                    </div>
+                                    <div class="job-content">
+                                        <h5 class="text-center text-md-left">{{ $jurnal->name }}   </h5>
+                                        <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
+                                            @foreach ($jurnal->jurnals_category as $category)
+                                                <li class="mr-md-4">
+                                                    <i class="zmdi zmdi-pin mr-2"></i> {{ $category->name . ' , ' }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="job-right my-4 flex-shrink-0">
+                                    <a href="{{ route('jurnal.show', $jurnal->slug)  }}" class="btn d-block w-100 d-sm-inline-block btn-light">Lihat Jurnal <i class="bi bi-eye"></i></a>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
+
+                <!-- START Pagination -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination pagination-reset justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                <i class="zmdi zmdi-long-arrow-left"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav> -
+                <!-- END Pagination -->
             </div>
-            @endforeach
         </div>
+
     </div>
-</section><!-- /Courses Section -->
+</section>
+
 @endsection
