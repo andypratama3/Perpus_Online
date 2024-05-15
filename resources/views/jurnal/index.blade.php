@@ -222,7 +222,7 @@
 
                     <div class="filter-result">
                         <p class="mb-30 ff-montserrat">Total Jurnal : {{ $jurnals->total() }} Item</p>
-                        @foreach ($jurnals as $jurnal)
+                        @forelse ($jurnals as $jurnal)
                             <div class="jurnal-item d-md-flex align-items-center justify-content-between mb-30">
                                 <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
                                     <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
@@ -243,7 +243,13 @@
                                     <a href="{{ route('jurnal.show', $jurnal->slug)  }}" class="btn d-block w-100 d-sm-inline-block btn-success">Lihat Jurnal <i class="bi bi-eye"></i></a>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                        <div class="container">
+                            <div class="form-group">
+                                <h3 class="text-center">Tidak ada jurnal</h3>
+                            </div>
+                        </div>
+                        @endforelse
                     </div>
                 </div>
 
