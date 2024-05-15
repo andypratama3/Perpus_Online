@@ -193,25 +193,26 @@
             <div class="col-lg-10 mx-auto">
                 <div class="jurnal-search mb-60">
 
-                    <form action="#" class="jurnal-form mb-60">
+                    <form action="{{ route('jurnal.index') }}" class="jurnal-form mb-60" method="GET">
+                        @csrf
                         <div class="row">
                             <div class="col-md-6 col-lg-6 my-3">
                                 <div class="input-group position-relative">
-                                    <input type="text" class="form-control" id="search-jurnal" placeholder="Cari Jurnal ..." id="keywords">
+                                    <input type="text" class="form-control" id="search-jurnal" name="search" placeholder="Cari Jurnal ..." value="{{ request()->query('search') }}">
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-4 my-3">
                                 <div class="input-group position-relative">
-                                    <select name="" id="select-category" class="form-control select-container custom-select" aria-placeholder="Pilih Kategori">
-                                        <option selected disabled>Pilih Kategori</option>
+                                    <select name="category" id="select-category" class="form-control Select-container custom-select" aria-placeholder="Pilih Kategori">
+                                        <option value="">Pilih Kategori</option>
                                         @foreach ($categorys as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}" {{ request()->query('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-2 col-lg-2 my-3 float-end">
-                                <button type="button" class="btn btn-lg btn-block btn-danger btn-custom"
+                                <button type="submit" class="btn btn-lg btn-block btn-danger btn-custom"
                                     id="contact-submit">
                                     Search <i class="bi bi-search icon my-5"></i>
                                 </button>

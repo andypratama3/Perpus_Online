@@ -11,12 +11,22 @@ class JurnalController extends Controller
 {
     public function index(Request $request)
     {
-        $jurnals = Jurnal::orderBy('created_at', 'desc')->paginate(20);
+        $jurnals = Jurnal::orderBy('created_at', 'desc')
+            ->when($request->has('search'), function ($query) use ($request) {
+                return $query->where(function ($query) use ($request) {
+                    $query->where('name', 'LIKE', '%' . $request->search . '%')
+                        ->orWhere('jurnal', 'LIKE', '%' . $request->search . '%')
+                        ->orWhere('slug', 'LIKE', '%' . $request->search . '%');
+                });
+            })->when($request->has('category'), function ($query) use ($request) {
+                return $query->whereHas('jurnals_category', function($query) use ($request) {
+                    $query->when($request->category != null, function($query) use ($request) {
+                        $query->where('category_bukus.id', $request->category);
+                    });
+                });
+            })
+            ->paginate(20);
         $categorys = CategoryBuku::all();
-
-        if($request->search){
-            
-        }
         return view('jurnal.index', compact('jurnals','categorys'));
     }
 
