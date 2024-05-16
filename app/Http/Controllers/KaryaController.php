@@ -11,22 +11,14 @@ class KaryaController extends Controller
 
     public function index()
     {
-        $karyas = Karya::where('status', 1)->paginate(10);
+        $karyas = Karya::where('status', 1)->paginate(20);
         $roles = Role::all();
         return view('karya.index', compact('karyas','roles'));
     }
-    public function create(Request $request)
+    public function show($karya)
     {
-        return view('karya.create');
+        $karya = Karya::where('slug', $karya)->where('status', 1)->firstOrFail();
+        return view('karya.show', compact('karya'));
     }
 
-    // public function store(KaryaStoreRequest $request)
-    // {
-    //     $karya = new Karya();
-    //     $karya->title = $request->title;
-    //     $karya->abstrack = $request->abstrack;
-    //     $karya->file_karya = $request->file_karya;
-    //     $karya->save();
-    //     return redirect()->route('karya.index')->with('success','Berhasil Menambahkan Karya');
-    // }
 }
