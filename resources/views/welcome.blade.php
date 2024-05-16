@@ -4,7 +4,7 @@
 <section id="hero" class="d-flex justify-content-center align-items-center" style="border-radius: 20px;">
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
         <h1>Learning Today,<br>Leading Tomorrow</h1>
-        <h2>We are team of talented designers making websites with Bootstrap</h2>
+        <h2>PERPUSTKAAN BALAI PENJAMINAN MUTU PENDIDIKAN PROVINSI KALIMANTAN TIMUR</h2>
         <a href="{{ route('register')  }}" class="btn-get-started">Get Started</a>
     </div>
 </section><!-- End Hero -->
@@ -273,12 +273,14 @@
                         <div class="trainer d-flex justify-content-between align-items-center">
                             <div class="trainer-profile d-flex align-items-center">
                                 <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
-                                <span>Antonio</span>
+                                {{-- @foreach ($buku->user as $user) --}}
+                                    <span>{{ $buku->first()->user->name }}</span>
+                                {{-- @endforeach --}}
                             </div>
                             <div class="trainer-rank d-flex align-items-center">
-                                <i class="bx bx-user"></i>&nbsp;50
+                                <i class="bx bx-user"></i>&nbsp;{{ $buku->jumlah_pengunjung }}
                                 &nbsp;&nbsp;
-                                <i class="bx bx-heart"></i>&nbsp;65
+                                {{-- <i class="bx bx-heart"></i>&nbsp;65 --}}
                             </div>
                         </div>
                     </div>

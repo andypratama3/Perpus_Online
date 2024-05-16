@@ -30,13 +30,22 @@
             </ul>
           </li> --}}
           <li><a href="{{ route('contact.index') }}">Kontak</a></li>
+          @auth
+          <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
+
+          @else
           <li><a href="{{ route('login') }}">Login</a></li>
+          @endauth
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
+      @auth
+      @else
+      <a href="{{ route('register') }}" class="get-started-btn">Get Started</a>
 
-      <a href="{{ route('buku.index') }}" class="get-started-btn">Get Started</a>
+      @endauth
+
 
     </div>
   </header><!-- End Header -->

@@ -60,50 +60,13 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
+          @can('role:superadmin')
           <li class="nav-item">
             <a class="nav-link" href="{{ route('dashboard.master.berita.index') }}">
               <i class="mdi mdi-newspaper menu-icon"></i>
               <span class="menu-title">Berita</span>
             </a>
           </li>
-          {{-- <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="mdi mdi mdi-menu menu-icon"></i>
-              <span class="menu-title">Data Master</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="submenu">
-              <ul class="submenu-item">
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('dashboard.pengaturan.user.index') }}">Buku Literasi</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('dashboard.pengaturan.role.index') }}">Jurnal</a></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('dashboard.pengaturan.task.index') }}">Karya</a></a>
-                </li>
-              </ul>
-            </div>
-          </li> --}}
-          {{-- <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="mdi mdi-book menu-icon"></i>
-              <span class="menu-title">Buku</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="submenu">
-              <ul class="submenu-item">
-                <li class="nav-item">
-
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('dashboard.buku.index') }}">Buku</a>
-                </a>
-                </li>
-              </ul>
-            </div>
-          </li> --}}
           <li class="nav-item">
             <a class="nav-link" href="{{ route('dashboard.category.buku.index') }}">
               <i class="mdi mdi-clipboard-text menu-icon"></i>
@@ -120,12 +83,6 @@
             <a class="nav-link" href="{{ route('dashboard.jurnal.index') }}">
               <i class="mdi mdi-clipboard-text menu-icon"></i>
               <span class="menu-title">Jurnal</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('dashboard.master.karya.index') }}">
-              <i class="mdi mdi-clipboard-text menu-icon"></i>
-              <span class="menu-title">Karya</span>
             </a>
           </li>
           <li class="nav-item">
@@ -148,6 +105,14 @@
               </ul>
             </div>
           </li>
+          @endcan
+          <li class="nav-item float-left">
+            <a class="nav-link" href="{{ route('dashboard.master.karya.index') }}">
+              <i class="mdi mdi-clipboard-text menu-icon"></i>
+              <span class="menu-title">Karya</span>
+            </a>
+          </li>
+
         </ul>
       </div>
     </nav>

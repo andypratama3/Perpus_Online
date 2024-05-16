@@ -240,7 +240,8 @@
                                     </div>
                                 </div>
                                 <div class="job-right my-4 flex-shrink-0">
-                                    <a href="{{ route('jurnal.show', $jurnal->slug)  }}" class="btn d-block w-100 d-sm-inline-block btn-success">Lihat Jurnal <i class="bi bi-eye"></i></a>
+                                    <a href="{{ route('jurnal.show', $jurnal->slug)  }}" class="btn d-block w-100 d-sm-inline-block btn-success">Lihat Jurnal <i class="bi bi-eye"> {{ $jurnal->jumlah_pengunjung }}</i></a>
+
                                 </div>
                             </div>
                         @empty
@@ -258,7 +259,7 @@
                     <ul class="pagination pagination-reset justify-content-end">
                         {{ $jurnals->links() }}
                     </ul>
-                </nav> -
+                </nav>
                 <!-- END Pagination -->
             </div>
         </div>
@@ -266,7 +267,6 @@
     </div>
 </section>
 @push('js_user')
-
     <script>
         $(document).ready(function () {
 

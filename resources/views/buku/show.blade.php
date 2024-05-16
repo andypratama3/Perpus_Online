@@ -71,13 +71,17 @@
                     <h5>Tahun Terbit</h5>
                     <p>{{ $buku->tahun_terbit }}</p>
                 </div>
-
+                <div class="course-info d-flex justify-content-between align-items-center">
+                    <h5>Jumlah Pengunjung</h5>
+                    <p>{{ $buku->jumlah_pengunjung }}</p>
+                </div>
                 <div class="form-group text-center">
-                    @auth
+                    <a href="{{ route('buku.baca', $buku->slug) }}" class="btn btn-primary">Baca Buku</a>
+                    {{-- @auth
                         <a href="{{ route('buku.baca', $buku->slug) }}" class="btn btn-primary">Baca Buku</a>
                         @else
                         <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
-                    @endauth
+                    @endauth --}}
                 </span>
                 </div>
             </div>
