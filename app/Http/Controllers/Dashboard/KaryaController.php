@@ -70,12 +70,20 @@ class KaryaController extends Controller
             $request->file_karya->move($upload_path, $file_name);
         }
 
+        if($request->cover_karya){
+            $ext = $request->cover_karya->getClientOriginalExtension();
+
+            $upload_path = public_path('storage/file/cover_karya/');
+            $file_name_cover = 'Karya_Cover'.Str::slug($request->title).'_'.date('YmdHis').".$ext";
+            $request->cover_karya->move($upload_path, $file_name_cover);
+        }
+
         $karya = new Karya();
         $karya->title = $request->title;
         $karya->abstrack = $request->abstrack;
         $karya->file_karya = $file_name;
         $karya->user_id = $user_id->id;
-
+        $karya->cover_karya = $file_name_cover;
         foreach ($user_id->roles as $role) {
             $karya->role_id = $role->id;
         }
@@ -118,11 +126,21 @@ class KaryaController extends Controller
         }else{
             $file_name = $karya->file_karya;
         }
+
+        if($request->cover_karya){
+            $ext = $request->cover_karya->getClientOriginalExtension();
+
+            $upload_path = public_path('storage/file/cover_karya/');
+            $file_name_cover = 'Karya_Cover'.Str::slug($request->title).'_'.date('YmdHis').".$ext";
+            $request->cover_karya->move($upload_path, $file_name_cover);
+        }else{
+            $file_name_cover = $karya->cover_karya;
+        }
         $karya->title = $request->title;
         $karya->abstrack = $request->abstrack;
         $karya->file_karya = $file_name;
         $karya->user_id = $karya->user_id;
-
+        $karya->cover_karya = $file_name_cover;
 
         $status = intval($request->status);
         if($status == 1){

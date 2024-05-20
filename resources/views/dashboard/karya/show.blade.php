@@ -21,6 +21,17 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="form-group text-center">
+                                <label for="">Cover Karya</label>
+                                <div class="input-group">
+                                    <input type="file" value="{{ $karya->cover_karya }}" class="form-control" name="cover_karya"
+                                        id="cover_karya">
+                                    <a href="{{ asset('storage/file/cover_karya/'. $karya->cover_karya) }}" target="__blank"
+                                        class="btn btn-success">Lihat Cover</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">File</label>
                                 <div class="input-group">

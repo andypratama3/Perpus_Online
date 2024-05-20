@@ -26,6 +26,13 @@
                                     <input type="text" class="form-control" name="abstrack" id="abstrack" value="{{ old('abstrack') }}">
                                 </div>
                             </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group text-center">
+                                    <label for="">Cover Karya</label>
+                                    <input type="file" class="form-control file-input" name="cover_karya" accept="image/*" value="{{ old('cover_karya') }}">
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group text-center">
                                     <label for="">File Karya</label>

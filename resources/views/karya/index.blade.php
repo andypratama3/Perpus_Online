@@ -26,6 +26,9 @@
             <div class="row gy-4 isotope-container text-center" data-aos="fade-up" data-aos-delay="200">
                 @foreach ($karyas as $karya)
                 <div class="col-lg-4 col-md-6 karya-item isotope-item filter-{{ $karya->role_id }}">
+                    <div class="karya-wrap">
+                        <img src="{{ asset('storage/file/cover_karya/'.$karya->cover_karya) }}" class="img-fluid" style="border-radius: 10px;"/>
+                    </div>
                     <div class="karya-info">
                         <h4>{{ $karya->title }}</h4>
                         <p>{{ $karya->abstrack }}</p>
