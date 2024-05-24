@@ -7,9 +7,9 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\CategoryBuku;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\View;
 class BukuController extends Controller
-{   
+{
 
     public function index(Request $request)
     {
@@ -17,7 +17,7 @@ class BukuController extends Controller
         $category_bukus = CategoryBuku::all();
 
         // Get all books initially
-        $bukus = Buku::select(['name', 'tahun_terbit', 'cover', 'description', 'jumlah_pengunjung','slug'])
+        $bukus = Buku::select(['name', 'tahun_terbit', 'cover', 'description','slug'])
                     ->orderBy('created_at', 'desc');
 
         // Check if the user is authenticated
@@ -41,7 +41,7 @@ class BukuController extends Controller
         }
 
         // Apply category filter
-        if ($request->has('category')) {
+        if ($request->has('category') ) {
             $bukus->whereHas('categories', function ($query) use ($request) {
                 $query->where('id', $request->category);
             });
@@ -55,15 +55,20 @@ class BukuController extends Controller
 
     public function show(Buku $buku)
     {
-
         return view('buku.show', compact('buku'));
     }
-    public function baca_buku(Buku $slug)
+
+    public function baca_buku($slug)
     {
 
+        $buku = Buku::where('slug', $slug)->firstOrFail();
         if(Auth::check()){
-            $slug->incrementClickCount();
-            return view('buku.baca', compact('slug'));
+            $user = Auth::id();
+            $view = View::create([
+                'viewable_id' => $buku->id,
+                'user_id' => $user
+            ]);
+            return view('buku.baca', compact('buku'));
         }else{
             return redirect()->route('login')->with('errro','Login Terlebih Dahulu');
         }

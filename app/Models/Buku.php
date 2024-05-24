@@ -25,17 +25,17 @@ class Buku extends Model
         'buku',
         'user_add',
         'role_id',
-        'jumlah_pengunjung',
+        // 'jumlah_pengunjung',
         'cover',
         'slug',
     ];
     protected $dates = ['deleted_at'];
 
-    public function incrementClickCount()
-    {
-        $this->jumlah_pengunjung++;
-        $this->save();
-    }
+    // public function incrementClickCount()
+    // {
+    //     $this->jumlah_pengunjung++;
+    //     $this->save();
+    // }
 
 
     public function categoryBukus()
@@ -51,6 +51,12 @@ class Buku extends Model
     public function roles()
     {
         return $this->belongsTo(Role::class, 'role_id');
+    }
+
+
+    public function buku_view()
+    {
+        return $this->belongsToMany(User::class,'buku_view');
     }
 
 }

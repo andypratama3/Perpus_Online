@@ -36,7 +36,7 @@ class ActionBuku
             $implodedCoverFileNames = implode(',', $coverFileNames); // Concatenate file names into a string
 
         }else{
-            $coverFileNames[] = $old_buku->cover;
+            $implodedCoverFileNames = $old_buku->cover;
         }
 
         $role_id = implode(',' , $BukuData->role_id);
@@ -59,6 +59,7 @@ class ActionBuku
         );
         if (empty($BukuData->slug)) {
             $buku->categoryBukus()->attach($BukuData->categoryBukus);
+
         } else {
             $buku->categoryBukus()->sync($BukuData->categoryBukus);
         }

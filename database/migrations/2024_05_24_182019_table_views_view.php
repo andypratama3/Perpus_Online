@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wishlists', function (Blueprint $table) {
+        Schema::create('views', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('buku_id');
             $table->string('user_id');
+            $table->string('viewable_id');
             $table->timestamps();
+
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wishlists');
+        Schema::drop('views');
     }
 };

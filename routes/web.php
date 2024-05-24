@@ -47,7 +47,7 @@ Route::group(['prefix' => '/',], function () {
     Route::get('berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');
     Route::get('karya/{slug}', [KaryaController::class,'show'])->name('karya.show');
 
-    Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], function () {
+    Route::group(['prefix' => '/', 'middleware' => ['auth', 'verified']], function () {
         Route::get('buku/baca/{slug}', [BukuController::class, 'baca_buku'])->name('buku.baca');
     });
 

@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('buku_views', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('buku_id');
-            $table->string('jumlah_orang');
+        Schema::create('jurnal_viewes', function (Blueprint $table) {
+            $table->uuid('id');
+            $table->foreignUuid('buku_id')->references('id')->on('bukus')->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+
+            $table->primary(['id', 'buku_id', 'user_id']);
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('buku_views');
+        Shema::drop('jurnal_viewes');
     }
 };

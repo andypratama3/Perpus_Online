@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jurnal;
+use App\Models\View;
 use App\Models\CategoryBuku;
-
+use Illuminate\Support\Facades\Auth;
 
 class JurnalController extends Controller
 {
@@ -32,7 +33,17 @@ class JurnalController extends Controller
 
     public function show(Jurnal $jurnal)
     {
-        $jurnal->incrementClickCount();
-        return view('jurnal.show', compact('jurnal'));
+        if(Auth::check()){
+            $user = Auth::id();
+            $view = View::create([
+                'viewable_id' => $jurnal->id,
+                'user_id' => $user
+            ]);
+            $jurnal->incrementClickCount();
+            return view('jurnal.show', compact('jurnal'));
+        }else{
+            return redirect()->route('login')->with('errro','Login Terlebih Dahulu');
+        }
+
     }
 }
