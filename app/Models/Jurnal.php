@@ -34,6 +34,6 @@ class Jurnal extends Model
     }
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_add');
+        return $this->belongsTo(User::class, );
     }
 }

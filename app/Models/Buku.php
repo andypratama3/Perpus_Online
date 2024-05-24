@@ -45,7 +45,7 @@ class Buku extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_add');
+        return $this->belongsTo(User::class);
     }
 
     public function roles()
@@ -53,10 +53,5 @@ class Buku extends Model
         return $this->belongsTo(Role::class, 'role_id');
     }
 
-
-    public function buku_view()
-    {
-        return $this->belongsToMany(User::class,'buku_view');
-    }
 
 }

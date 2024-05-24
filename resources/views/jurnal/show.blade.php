@@ -57,7 +57,7 @@
     <div class="container" data-aos="fade-up">
       <div class="row">
         <div class="col-lg-12 mt-2 mt-lg-0">
-            {{-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint animi amet est. Mollitia recusandae necessitatibus sequi iste architecto ad vitae totam sapiente est accusamus ab, qui molestias. Reprehenderit, adipisci eius.</p> --}}
+                
         </div>
       </div>
     </div>

@@ -75,15 +75,4 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class, 'users_roles');
     }
-
-
-    public function buku_view()
-    {
-        return $this->belongsToMany(Buku::class,'buku_view');
-    }
-
-    public function jurnal_view(): HasMany
-    {
-        return $this->hasMany(Jurnal::class, 'id', 'jurnal_id');
-    }
 }
