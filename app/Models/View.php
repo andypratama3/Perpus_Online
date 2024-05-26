@@ -13,4 +13,21 @@ class View extends Model
     protected $table = 'views';
 
     protected $guarded = [];
+
+
+    /**
+     * Get the buku that owns the View
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function buku()
+    {
+        return $this->belongsTo(Buku::class, 'viewable_id', 'id');
+    }
+
+
+    public function user()
+    {
+        return $this->hasMany(User::class, 'id', 'user_id');
+    }
 }

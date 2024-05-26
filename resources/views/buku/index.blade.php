@@ -154,7 +154,10 @@
                         {!! Str::limit($buku->description, 100) !!}</p>
 
                     <h5 class="link align-center mbr-fonts-style display-7">
-                        <i class="bi bi-eye"></i> {{ $buku->jumlah_pengunjung }}
+                        <i class="bi bi-eye"></i> {{ $buku->views->count() }}
+                        {{-- @foreach ($buku->user_ids as $userId)
+                            {{ $userId }},
+                        @endforeach --}}
                         <a href="{{ route('buku.show', $buku->slug) }}" class="text-black btn btn-success btn-sm">
                             READ MORE
                         </a>

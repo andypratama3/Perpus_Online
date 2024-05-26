@@ -18,7 +18,7 @@ use App\Http\Controllers\Dashboard\JurnalController as DashboardJurnalController
 use App\Http\Controllers\Dashboard\BukuController as DashboardBukuController;
 use App\Http\Controllers\Dashboard\KaryaController as DashboardKaryaController;
 use App\Http\Controllers\Dashboard\BeritaController as DashboardBeritaController;
-
+use App\Http\Controllers\Dashboard\ViewBukuController as DashboardViewBukuController;
 
 
 
@@ -72,6 +72,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], fu
         Route::get('karyas/records', [DashboardKaryaController::class, 'data_table'])->name('dashboard.master.karya.getKarya');
 
     });
+
+    Route::resource('views-bukus', DashboardViewBukuController::class, ['names' => 'dashboard.views']);
+
     Route::group(['prefix' => 'pengaturan'], function (){
         Route::resource('user', UserController::class, ['names' => 'dashboard.pengaturan.user'])->except('create','store');
         Route::get('users/records', [UserController::class, 'data_table'])->name('dashboard.pengaturan.getuser');

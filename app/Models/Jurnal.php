@@ -21,12 +21,7 @@ class Jurnal extends Model
         'slug',
     ];
 
-    public function incrementClickCount()
-    {
-        $this->jumlah_pengunjung++;
-        $this->save();
-    }
-
+    protected $dates = ['deleted_at'];
 
     public function jurnals_category()
     {
@@ -34,6 +29,10 @@ class Jurnal extends Model
     }
     public function user()
     {
-        return $this->belongsTo(User::class, );
+        return $this->belongsTo(User::class, 'user_add');
+    }
+    public function view()
+    {
+        return $this->belongsTo(View::class, 'viewable_id', 'id');
     }
 }

@@ -17,8 +17,8 @@ class BukuController extends Controller
         $category_bukus = CategoryBuku::all();
 
         // Get all books initially
-        $bukus = Buku::select(['name', 'tahun_terbit', 'cover', 'description','slug'])
-                    ->orderBy('created_at', 'desc');
+        $bukus = Buku::with('views')->select(['id','name', 'tahun_terbit', 'cover', 'description','slug'])
+                ->orderBy('created_at', 'desc');
 
         // Check if the user is authenticated
         if ($user) {
