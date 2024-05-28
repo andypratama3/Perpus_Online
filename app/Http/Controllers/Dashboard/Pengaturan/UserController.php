@@ -21,34 +21,13 @@ class UserController extends Controller
     }
     public function index()
     {
-        return view('dashboard.pengaturan.user.index');
+        $limit = 15;
+        $users = User::orderBy('name')->paginate($limit);
+        $count = $users->count();
+        $no = $limit * ($users->currentPage() - 1);
+        return view('dashboard.pengaturan.user.index', compact('users', 'count', 'no'));
     }
-    public function data_table()
-    {
 
-        $query = User::with('roles')->select(['name', 'email','avatar', 'slug'])->orderBy('name', 'asc');
-
-
-        return DataTables::eloquent($query)
-        ->addColumn('role_name', function ($row) {
-            if ($row->roles->isNotEmpty()) {
-                return $row->roles->pluck('name')->implode(', ');
-            } else {
-                return 'No roles assigned';
-            }
-        })
-
-            ->addColumn('options', function ($row) {
-                return '
-                    <a href="' . route('dashboard.pengaturan.user.show', $row->slug) . '" class="btn btn-sm btn-warning"><i class="mdi mdi-eye"></i></a>
-                    <a href="' . route('dashboard.pengaturan.user.edit', $row->slug) . '" class="btn btn-sm btn-primary"><i class="mdi mdi-pen"></i></a>
-                    <button data-id="' . $row['slug'] . '" class="btn btn-sm btn-danger" id="btn-delete"><i class="mdi mdi-delete"></i></button>
-                ';
-            })
-            ->rawColumns(['options'])
-            ->addIndexColumn()
-            ->make(true);
-    }
     public function create()
     {
 

@@ -29,6 +29,30 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                            <tr>
+                                <td>{{ ++$no }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>
+                                    @foreach ($user->roles as $role)
+                                        {{ $role->name }}
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <a href="{{ route('dashboard.pengaturan.user.edit', $user->slug) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    <a href="#" data-id="{{ $user->slug }}" class="btn btn-danger btn-sm swal-delete" title="Hapus">
+                                        <form action="{{ route('dashboard.pengaturan.user.destroy', $user->slug) }}" id="delete-{{ $user->slug }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('delete')
+                                        </form>
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
                 </div>
             </div>
@@ -36,44 +60,13 @@
         </div>
         </div>
     </div>
-<input type="hidden" id="user_value_data" value="{{ route('dashboard.pengaturan.getuser') }}">
+{{-- <input type="hidden" id="user_value_data" value="{{ route('dashboard.pengaturan.getuser') }}"> --}}
 @push('js')
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
 <script>
-$(document).ready(function () {
-    function reloadTable(id){
-        var table = $(id).DataTable();
-        table.cleanData;
-        table.ajax.reload();
-    }
-    $('#table_user').DataTable({
-        ordering: true,
-        pagination: true,
-        deferRender: true,
-        serverSide: true,
-        responsive: true,
-        processing: true,
-        pageLength: 100,
-        ajax: {
-            'url': $('#user_value_data').val(),
-        },
-        columns: [
-            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-            { data: 'name', name: 'name' },
-            { data: 'email', name: 'email' },
-            { data: 'role_name', name: 'role_name' },
-            // { data: 'avatar',
-            //     render: function (data){
-            //         return `<img src="{{ asset('storage/profile/profile.jpg') }}" alt="" srcset="">`;
-            //     }
-            // },
-            {
-                data: 'options', name: 'options', orderable: false, searchable: false
-            }
-        ],
-    });
-    $('#table_user').on('click', '#btn-delete', function () {
+    $(document).ready(function () {
+        $('.card-body').on('click', '.swal-delete', function () {
             var slug = $(this).data('id');
             var url = '{{ route("dashboard.pengaturan.user.destroy", ":slug") }}';
             url = url.replace(':slug', slug);
@@ -97,12 +90,13 @@ $(document).ready(function () {
                         success: function (data) {
                             if (data.status === 'success') {
                                 swal('Berhasil', data.message, 'success').then(() => {
-                                reloadTable('#table_user');
+                                window.location.reload();
                             });
                             } else {
                                 // Reload the page with an error message
                                 swal('Error', data.message, 'error');
-                                reloadTable('#table_user');
+                                window.location.reload();
+
                             }
                         }
                     });
@@ -110,9 +104,81 @@ $(document).ready(function () {
                     // If the user cancels the deletion, do nothing
                 }
             });
-        });
+    });
 
     });
+// $(document).ready(function () {
+//     function reloadTable(id){
+//         var table = $(id).DataTable();
+//         table.cleanData;
+//         table.ajax.reload();
+//     }
+//     $('#table_user').DataTable({
+//         ordering: true,
+//         pagination: true,
+//         deferRender: true,
+//         serverSide: true,
+//         responsive: true,
+//         processing: true,
+//         pageLength: 100,
+//         ajax: {
+//             'url': $('#user_value_data').val(),
+//         },
+//         columns: [
+//             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+//             { data: 'name', name: 'name' },
+//             { data: 'email', name: 'email' },
+//             { data: 'role_name', name: 'role_name' },
+//             // { data: 'avatar',
+//             //     render: function (data){
+//             //         return `<img src="{{ asset('storage/profile/profile.jpg') }}" alt="" srcset="">`;
+//             //     }
+//             // },
+//             {
+//                 data: 'options', name: 'options', orderable: false, searchable: false
+//             }
+//         ],
+//     });
+//     $('#table_user').on('click', '#btn-delete', function () {
+//             var slug = $(this).data('id');
+//             var url = '{{ route("dashboard.pengaturan.user.destroy", ":slug") }}';
+//             url = url.replace(':slug', slug);
+//             swal({
+//                 title: 'Anda yakin?',
+//                 text: 'Data yang sudah dihapus tidak dapat dikembalikan!',
+//                 icon: 'warning',
+//                 buttons: true,
+//                 dangerMode: true,
+//             }).then((willDelete) => {
+//                 if (willDelete) {
+//                     $.ajaxSetup({
+//                         headers: {
+//                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//                         }
+//                     });
+//                     $.ajax({
+//                         method: 'DELETE',
+//                         data: { slug: slug },
+//                         url: url,
+//                         success: function (data) {
+//                             if (data.status === 'success') {
+//                                 swal('Berhasil', data.message, 'success').then(() => {
+//                                 reloadTable('#table_user');
+//                             });
+//                             } else {
+//                                 // Reload the page with an error message
+//                                 swal('Error', data.message, 'error');
+//                                 reloadTable('#table_user');
+//                             }
+//                         }
+//                     });
+//                 } else {
+//                     // If the user cancels the deletion, do nothing
+//                 }
+//             });
+//         });
+
+//     });
 </script>
 @endpush
 @endsection
