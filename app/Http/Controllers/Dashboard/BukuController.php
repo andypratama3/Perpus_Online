@@ -17,7 +17,9 @@ class BukuController extends Controller
 {
     public function __construct(){
         $this->middleware('role:superadmin');
-        // $this->middleware('permission : ');
+        $this->middleware('permission:show-buku', ['only' => ['show']]);
+        $this->middleware('permission:edit-buku', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete-buku', ['only' => ['edit', 'update']]);
     }
     public function index()
     {

@@ -26,9 +26,18 @@ class UserController extends Controller
     public function data_table()
     {
 
-        $query = User::select(['name', 'email','avatar', 'slug'])->orderBy('name', 'asc');
+        $query = User::with('roles')->select(['name', 'email','avatar', 'slug'])->orderBy('name', 'asc');
+
 
         return DataTables::eloquent($query)
+        ->addColumn('role_name', function ($row) {
+            if ($row->roles->isNotEmpty()) {
+                return $row->roles->pluck('name')->implode(', ');
+            } else {
+                return 'No roles assigned';
+            }
+        })
+
             ->addColumn('options', function ($row) {
                 return '
                     <a href="' . route('dashboard.pengaturan.user.show', $row->slug) . '" class="btn btn-sm btn-warning"><i class="mdi mdi-eye"></i></a>
