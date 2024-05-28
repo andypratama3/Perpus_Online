@@ -80,6 +80,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{{ route('dashboard.views.index') }}">
+              <i class="mdi mdi-eye menu-icon"></i>
+              <span class="menu-title">View Buku Literasi</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{{ route('dashboard.jurnal.index') }}">
               <i class="mdi mdi-clipboard-text menu-icon"></i>
               <span class="menu-title">Jurnal</span>
