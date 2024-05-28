@@ -2,9 +2,9 @@
     <nav class="navbar top-navbar col-lg-12 col-12 p-0">
       <div class="container">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo" href="{{ route('dashboard.index') }}">
-            <img src="{{ asset('assets/images/logo.svg') }}" alt="logo" />
-            <span class="font-12 d-block font-weight-light">Responsive Dashboard </span>
+          <a class="navbar-brand brand-logo" href="{{ route('dashboard.index') }}">PERPUSTAKAAN BPMP
+            {{-- <img src="{{ asset('assets/images/logo.svg') }}" alt="logo" /> --}}
+            <span class="font-12 d-block font-weight-light">Kalimantan Timur </span>
           </a>
           <a class="navbar-brand brand-logo-mini" href="{{ route('dashboard.index') }}"><img src="{{ asset('assets/images/logo-mini.svg') }}" alt="logo" /></a>
         </div>

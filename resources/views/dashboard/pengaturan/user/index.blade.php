@@ -25,6 +25,7 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Email</th>
+                            <th>Role</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -61,6 +62,7 @@ $(document).ready(function () {
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
+            { data: 'role_name', name: 'role_name' },
             // { data: 'avatar',
             //     render: function (data){
             //         return `<img src="{{ asset('storage/profile/profile.jpg') }}" alt="" srcset="">`;
