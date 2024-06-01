@@ -33,13 +33,14 @@ class JurnalController extends Controller
 
     public function show(Jurnal $jurnal)
     {
+        dd($jurnal);
         if(Auth::check()){
             $user = Auth::id();
             $view = View::create([
                 'viewable_id' => $jurnal->id,
                 'user_id' => $user
             ]);
-            $jurnal->incrementClickCount();
+            // $jurnal->incrementClickCount();
             return view('jurnal.show', compact('jurnal'));
         }else{
             return redirect()->route('login')->with('errro','Login Terlebih Dahulu');

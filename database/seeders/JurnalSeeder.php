@@ -12,7 +12,7 @@ class JurnalSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Jurnal::factory()->count(100)->create();
+        // \App\Models\Jurnal::factory()->count(100)->create();
 
     }
 }
