@@ -55,7 +55,12 @@ class BukuController extends Controller
 
     public function show(Buku $buku)
     {
-        return view('buku.show', compact('buku'));
+        $role_access_buku = $buku->roles = Role::find($buku->role_id);
+        if(Auth::user()->roles != $role_access_buku && !Auth::user()->hasRole('superadmin')){
+            return redirect()->route('buku.index')->with('error', 'Anda Tidak Memiliki Hak Akses!');
+        }else{
+            return view('buku.show', compact('buku'));
+        }
     }
 
     public function baca_buku($slug)
