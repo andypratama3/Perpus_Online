@@ -42,7 +42,7 @@ class BukuController extends Controller
 
         // Apply category filter
         if ($request->has('category') ) {
-            $bukus->whereHas('categories', function ($query) use ($request) {
+            $bukus->whereHas('categoryBukus', function ($query) use ($request) {
                 $query->where('id', $request->category);
             });
         }

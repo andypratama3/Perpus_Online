@@ -136,7 +136,7 @@
         </div>
 
         <div class="row">
-            @foreach ($bukus as $buku)
+            @forelse ($bukus as $buku)
             @php
             $coverArray = explode(',', rtrim($buku->cover, ','));
             $firstCover = reset($coverArray);
@@ -164,7 +164,23 @@
                     </h5>
                 </div>
             </div>
-            @endforeach
+            @empty
+            <div class="container">
+                <div class="form-group text-center">
+                    <div class="card">
+                        <div class="card-body" >
+                            <p class="text-center" colspan="4">
+                                <strong>0 Data Found</strong>
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            @endforelse
         </div>
         <nav aria-label="Page navigation">
             <ul class="pagination pagination-reset justify-content-end">
