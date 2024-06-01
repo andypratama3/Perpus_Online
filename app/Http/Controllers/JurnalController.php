@@ -33,7 +33,7 @@ class JurnalController extends Controller
 
     public function show(Jurnal $jurnal)
     {
-        dd($jurnal);
+        // dd($jurnal);
         if(Auth::check()){
             $user = Auth::id();
             $view = View::create([
