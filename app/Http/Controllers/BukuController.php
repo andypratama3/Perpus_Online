@@ -55,17 +55,21 @@ class BukuController extends Controller
 
     public function show(Buku $buku)
     {
-        // Allow superadmin to see all books
-        if (Auth::user()->hasRole('superadmin')) {
-            return view('buku.show', compact('buku'));
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->hasRole('superadmin')) {
+                return view('buku.show', compact('buku'));
+            }
+
+            $role_access_buku = $buku->role_id;
+            if ($user->roles->pluck('id')->contains($role_access_buku)) {
+                return view('buku.show', compact('buku'));
+            }else{
+                return redirect()->route('login')->with('error', 'Anda Tidak Memiliki Akses');
+            }
         }
 
-        $role_access_buku = $buku->role_id;
-        if(Auth::user()->roles->pluck('name')->contains($role_access_buku) ){
-            return view('buku.show', compact('buku'));
-        }else{
-            return redirect()->route('buku.index')->with('error', 'Anda Tidak Memiliki Hak Akses!');
-        }
+        return redirect()->route('login')->with('error', 'Login Terlebih Dahulu');
     }
 
     public function baca_buku($slug)
@@ -73,14 +77,26 @@ class BukuController extends Controller
 
         $buku = Buku::where('slug', $slug)->firstOrFail();
         if(Auth::check()){
-            $user = Auth::id();
-            $view = View::create([
-                'viewable_id' => $buku->id,
-                'user_id' => $user
-            ]);
-            return view('buku.baca', compact('buku'));
+            $user = Auth::user();
+
+            if ($user->hasRole('superadmin')) {
+                return view('buku.baca', compact('buku'));
+                
+            }
+
+            $role_access_buku = $buku->role_id;
+            if ($user->roles->pluck('id')->contains($role_access_buku)) {
+                $user = Auth::id();
+                $view = View::create([
+                    'viewable_id' => $buku->id,
+                    'user_id' => $user
+                ]);
+                return view('buku.baca', compact('buku'));
+            }else{
+                return redirect()->back()->with('error','Anda Tidak Memiliki Akses');
+            }
         }else{
-            return redirect()->route('login')->with('errro','Login Terlebih Dahulu');
+            return redirect()->route('login')->with('error','Login Terlebih Dahulu');
         }
 
     }
